@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Usuarios y roles | Makka Studio</title>
+  <meta name="description" content="Administra los roles de las cuentas de Makka Studio.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f8af04">
+  <link rel="icon" type="image/png" href="assets/img/brand/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/pages/admin.css">
+</head>
+<body class="page-admin" data-admin="usuarios" data-page-file="admin-usuarios.html">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <noscript><p class="admin-noscript">Para usar el panel necesitas activar JavaScript en tu navegador.</p></noscript>
+
+  <!-- Sin sesión o sin permiso -->
+  <div class="admin-block" id="admin-bloqueo" hidden>
+    <div class="state">
+      <img class="state__bee" src="assets/img/brand/bee.webp" alt="" width="700" height="598">
+      <h1 class="state__title" id="bloqueo-titulo">Esta zona es solo para el equipo</h1>
+      <p class="state__text" id="bloqueo-texto"></p>
+      <div class="admin-block__actions">
+        <a class="btn btn--violet" id="bloqueo-login" href="login.html?siguiente=admin-usuarios.html" hidden>Iniciar sesión</a>
+        <a class="btn btn--honey" href="index.html">Ir a la tienda</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin" id="admin-app" hidden>
+    <header class="admin-top">
+      <button class="admin-top__toggle" id="admin-toggle" type="button" aria-expanded="false" aria-controls="admin-side" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a class="admin-top__brand" href="dashboard.html" aria-label="Makka Studio, panel de control">
+        <img src="assets/img/brand/logo-horizontal.webp" alt="Makka Studio" width="900" height="255">
+      </a>
+      <span class="chip chip--pale admin-top__tag">Panel</span>
+
+      <div class="admin-top__actions">
+        <div class="user-menu" id="admin-menu">
+          <button class="user-menu__btn" id="admin-menu-btn" type="button" aria-expanded="false" aria-controls="admin-menu-lista">
+            <span class="user-menu__avatar" id="admin-avatar" aria-hidden="true"></span>
+            <span class="user-menu__name" id="admin-nombre">Admin</span>
+          </button>
+          <ul class="user-menu__list" id="admin-menu-lista" hidden>
+            <li><button class="user-menu__item user-menu__item--logout" id="admin-salir" type="button">Cerrar sesión</button></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <div class="admin-body">
+      <aside class="admin-side" id="admin-side" aria-label="Administración">
+        <div class="admin-side__top">
+          <p class="admin-side__label">Menú</p>
+          <nav aria-label="Secciones del panel">
+            <ul class="admin-nav" id="admin-nav"></ul>
+          </nav>
+        </div>
+        <div class="admin-side__foot">
+          <a class="admin-nav__link" href="index.html">
+            <span class="admin-nav__icon"><img src="assets/img/icons/store.svg" alt="" width="22" height="22"></span>
+            <span class="admin-nav__label">Ver tienda</span>
+          </a>
+          <button class="admin-nav__link" id="admin-salir-lado" type="button">
+            <span class="admin-nav__icon"><img src="assets/img/icons/logout.svg" alt="" width="22" height="22"></span>
+            <span class="admin-nav__label">Cerrar sesión</span>
+          </button>
+        </div>
+      </aside>
+
+      <div class="admin-main">
+        <main id="contenido" class="admin-content">
+          <section class="ord-head" aria-labelledby="usr-titulo">
+            <div>
+              <span class="chip chip--honey">Administración</span>
+              <h1 class="ord-head__title" id="usr-titulo" tabindex="-1">Usuarios y roles</h1>
+              <p class="ord-head__text">Consulta las cuentas de la tienda y decide quién puede administrar.</p>
+            </div>
+            <div class="ord-head__tools">
+              <button class="btn btn--white btn--sm" id="demo-cargar" type="button" hidden>Cargar datos de ejemplo</button>
+              <div class="field field--search ord-search">
+                <img class="field__icon" src="assets/img/icons/search.svg" alt="" width="24" height="24">
+                <label class="sr-only" for="usr-buscar">Buscar por nombre o correo</label>
+                <input class="field__input" id="usr-buscar" type="search" placeholder="Buscar por nombre o correo" autocomplete="off" maxlength="80">
+              </div>
+            </div>
+          </section>
+
+          <section class="adm-stats" aria-label="Resumen de cuentas" id="usr-resumen"></section>
+
+          <section class="adm-toolbar" aria-label="Filtros">
+            <div class="adm-toolbar__select">
+              <label class="sr-only" for="usr-rol">Filtrar por rol</label>
+              <select class="field__select" id="usr-rol">
+                <option value="">Todos los roles</option>
+                <option value="cliente">Clientes</option>
+                <option value="empleado">Empleados</option>
+                <option value="administrador">Administradores</option>
+              </select>
+            </div>
+          </section>
+
+          <section class="dash-card" aria-labelledby="usr-titulo">
+            <div class="dash-empty" id="usr-vacio" hidden><p id="usr-vacio-texto">No encontramos cuentas con esa búsqueda.</p></div>
+            <table class="dash-table adm-table" id="usr-tabla" hidden>
+              <thead>
+                <tr><th scope="col">Nombre</th><th scope="col">Correo</th><th scope="col">Teléfono</th><th scope="col">Rol</th><th scope="col">Fecha de alta</th><th scope="col">Acción</th></tr>
+              </thead>
+              <tbody id="usr-cuerpo"></tbody>
+            </table>
+            <div class="adm-more">
+              <p class="dash-note" id="usr-contador" role="status"></p>
+              <button class="btn btn--white btn--sm" id="usr-mas" type="button" hidden>Mostrar más</button>
+            </div>
+          </section>
+
+          <dialog class="adm-dialog" id="usr-dialogo" aria-labelledby="usr-dialogo-titulo">
+            <form class="adm-dialog__box" id="usr-form" novalidate>
+              <h2 class="adm-dialog__title" id="usr-dialogo-titulo" tabindex="-1">Cambiar rol</h2>
+              <div class="form-group">
+                <label class="form-label" for="usr-nuevo-rol">Rol</label>
+                <div class="field"><select class="field__select" id="usr-nuevo-rol">
+                  <option value="cliente">Cliente</option>
+                  <option value="empleado">Empleado</option>
+                  <option value="administrador">Administrador</option>
+                </select></div>
+              </div>
+              <p class="ord-warn"><img src="assets/img/icons/alert.svg" alt="" width="22" height="22"><span>No puedes quitarte tus propios permisos sin asignar antes a otro administrador.</span></p>
+              <p class="form-error" id="usr-error" role="alert" hidden></p>
+              <div class="adm-dialog__actions">
+                <button class="btn btn--honey" type="submit">Guardar</button>
+                <button class="btn btn--white" id="usr-cancelar" type="button">Cancelar</button>
+              </div>
+            </form>
+          </dialog>
+
+          <dialog class="adm-dialog" id="adm-confirm" aria-labelledby="adm-confirm-title">
+            <div class="adm-dialog__box">
+              <h2 class="adm-dialog__title" id="adm-confirm-title">¿Continuar?</h2>
+              <p id="adm-confirm-text"></p>
+              <div class="adm-dialog__actions">
+                <button class="btn btn--honey" id="adm-confirm-ok" type="button">Continuar</button>
+                <button class="btn btn--white" id="adm-confirm-cancel" type="button">Cancelar</button>
+              </div>
+            </div>
+          </dialog>
+        </main>
+
+        <footer class="site-footer site-footer--panel">
+    <div class="container">
+      <div class="panel-footer">
+        <div class="site-footer__badge">
+          <img src="assets/img/brand/bee.webp" alt="Makka Studio" width="700" height="598" loading="lazy">
+        </div>
+        <div>
+          <p class="panel-footer__title">Panel de Makka Studio</p>
+          <p class="panel-footer__text">Cada pedido bien cuidado es una pieza más que sale de nuestras manos. ¡Buen trabajo, equipo!</p>
+        </div>
+      </div>
+
+      <div class="site-footer__legal">
+        <p>© 2026 Makka Studio. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/components/toast.js" defer></script>
+  <script src="assets/js/components/product-card.js" defer></script>
+  <script src="assets/js/services/session.js" defer></script>
+  <script src="assets/js/services/auth.js" defer></script>
+  <script src="assets/js/services/compras.js" defer></script>
+  <script src="assets/js/services/solicitudes.js" defer></script>
+  <script src="assets/js/services/demo-data.js" defer></script>
+  <script src="assets/js/components/avatar.js" defer></script>
+  <script src="assets/js/components/admin-shell.js" defer></script>
+  <script src="assets/js/components/admin-utils.js" defer></script>
+  <script src="assets/js/pages/admin-usuarios.js" defer></script>
+</body>
+</html>

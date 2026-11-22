@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pedidos y pagos | Makka Studio</title>
+  <meta name="description" content="Valida pagos y administra los pedidos de Makka Studio.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f8af04">
+  <link rel="icon" type="image/png" href="assets/img/brand/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/pages/admin.css">
+</head>
+<body class="page-admin" data-admin="pedidos" data-page-file="admin-pedidos.html">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <noscript><p class="admin-noscript">Para usar el panel necesitas activar JavaScript en tu navegador.</p></noscript>
+
+  <!-- Sin sesión o sin permiso -->
+  <div class="admin-block" id="admin-bloqueo" hidden>
+    <div class="state">
+      <img class="state__bee" src="assets/img/brand/bee.webp" alt="" width="700" height="598">
+      <h1 class="state__title" id="bloqueo-titulo">Esta zona es solo para el equipo</h1>
+      <p class="state__text" id="bloqueo-texto"></p>
+      <div class="admin-block__actions">
+        <a class="btn btn--violet" id="bloqueo-login" href="login.html?siguiente=admin-pedidos.html" hidden>Iniciar sesión</a>
+        <a class="btn btn--honey" href="index.html">Ir a la tienda</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin" id="admin-app" hidden>
+    <header class="admin-top">
+      <button class="admin-top__toggle" id="admin-toggle" type="button" aria-expanded="false" aria-controls="admin-side" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a class="admin-top__brand" href="dashboard.html" aria-label="Makka Studio, panel de control">
+        <img src="assets/img/brand/logo-horizontal.webp" alt="Makka Studio" width="900" height="255">
+      </a>
+      <span class="chip chip--pale admin-top__tag">Panel</span>
+
+      <div class="admin-top__actions">
+        <div class="user-menu" id="admin-menu">
+          <button class="user-menu__btn" id="admin-menu-btn" type="button" aria-expanded="false" aria-controls="admin-menu-lista">
+            <span class="user-menu__avatar" id="admin-avatar" aria-hidden="true"></span>
+            <span class="user-menu__name" id="admin-nombre">Admin</span>
+          </button>
+          <ul class="user-menu__list" id="admin-menu-lista" hidden>
+            <li><button class="user-menu__item user-menu__item--logout" id="admin-salir" type="button">Cerrar sesión</button></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <div class="admin-body">
+      <aside class="admin-side" id="admin-side" aria-label="Administración">
+        <div class="admin-side__top">
+          <p class="admin-side__label">Menú</p>
+          <nav aria-label="Secciones del panel">
+            <ul class="admin-nav" id="admin-nav"></ul>
+          </nav>
+        </div>
+        <div class="admin-side__foot">
+          <a class="admin-nav__link" href="index.html">
+            <span class="admin-nav__icon"><img src="assets/img/icons/store.svg" alt="" width="22" height="22"></span>
+            <span class="admin-nav__label">Ver tienda</span>
+          </a>
+          <button class="admin-nav__link" id="admin-salir-lado" type="button">
+            <span class="admin-nav__icon"><img src="assets/img/icons/logout.svg" alt="" width="22" height="22"></span>
+            <span class="admin-nav__label">Cerrar sesión</span>
+          </button>
+        </div>
+      </aside>
+
+      <div class="admin-main">
+        <main id="contenido" class="admin-content">
+          <section class="ord-head" aria-labelledby="ped-titulo">
+            <div>
+              <span class="chip chip--honey">Administración</span>
+              <h1 class="ord-head__title" id="ped-titulo" tabindex="-1">Pedidos y pagos</h1>
+              <p class="ord-head__text">Revisa los comprobantes, valida los pagos y lleva cada pedido hasta la entrega.</p>
+            </div>
+            <div class="ord-head__tools">
+              <button class="btn btn--white btn--sm" id="demo-cargar" type="button" hidden>Cargar datos de ejemplo</button>
+              <div class="field field--search ord-search">
+                <img class="field__icon" src="assets/img/icons/search.svg" alt="" width="24" height="24">
+                <label class="sr-only" for="ped-buscar">Buscar por folio, cliente o correo</label>
+                <input class="field__input" id="ped-buscar" type="search" placeholder="Buscar folio, cliente o correo" autocomplete="off" maxlength="80">
+              </div>
+            </div>
+          </section>
+
+          <div class="ord-tabs" role="tablist" aria-label="Estado de los pedidos" id="ped-tabs"></div>
+
+          <div class="ord-layout">
+            <section class="dash-card ord-list" id="ped-panel-lista" role="tabpanel" aria-labelledby="ped-tabs">
+              <div class="dash-empty" id="ped-vacio" hidden>
+                <p id="ped-vacio-texto">No hay pedidos en esta pestaña.</p>
+              </div>
+              <table class="dash-table ord-table" id="ped-tabla" hidden>
+                <thead>
+                  <tr><th scope="col">Pedido</th><th scope="col">Fecha</th><th scope="col">Cliente</th><th scope="col">Piezas</th><th scope="col">Total</th><th scope="col">Estatus</th></tr>
+                </thead>
+                <tbody id="ped-cuerpo"></tbody>
+              </table>
+            </section>
+
+            <aside class="dash-card ord-detail" id="ped-detalle" aria-live="polite" aria-label="Detalle del pedido">
+              <div class="ord-detail__empty" id="ped-detalle-vacio">
+                <img src="assets/img/icons/receipt.svg" alt="" width="40" height="40">
+                <p>Elige un pedido de la lista para ver su detalle.</p>
+              </div>
+              <div id="ped-detalle-contenido" hidden></div>
+            </aside>
+          </div>
+        </main>
+
+        <footer class="site-footer site-footer--panel">
+    <div class="container">
+      <div class="panel-footer">
+        <div class="site-footer__badge">
+          <img src="assets/img/brand/bee.webp" alt="Makka Studio" width="700" height="598" loading="lazy">
+        </div>
+        <div>
+          <p class="panel-footer__title">Panel de Makka Studio</p>
+          <p class="panel-footer__text">Cada pedido bien cuidado es una pieza más que sale de nuestras manos. ¡Buen trabajo, equipo!</p>
+        </div>
+      </div>
+
+      <div class="site-footer__legal">
+        <p>© 2026 Makka Studio. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/components/toast.js" defer></script>
+  <script src="assets/js/components/product-card.js" defer></script>
+  <script src="assets/js/services/session.js" defer></script>
+  <script src="assets/js/services/auth.js" defer></script>
+  <script src="assets/js/services/compras.js" defer></script>
+  <script src="assets/js/services/solicitudes.js" defer></script>
+  <script src="assets/js/services/demo-data.js" defer></script>
+  <script src="assets/js/components/avatar.js" defer></script>
+  <script src="assets/js/components/admin-shell.js" defer></script>
+  <script src="assets/js/pages/admin-pedidos.js" defer></script>
+</body>
+</html>

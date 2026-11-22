@@ -1,0 +1,225 @@
+/* Mis compras. Los colores de los estatus están en components/status.css */
+
+.orders {
+  padding-block: clamp(1.5rem, 4vw, 2.5rem) clamp(3rem, 7vw, 5rem);
+}
+
+.orders__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem 1rem;
+  padding-bottom: 6px;
+}
+
+/* ---------- Pestañas ---------- */
+
+.orders__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.orders__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.5rem 0.4rem 1.1rem;
+  border: var(--stroke) solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: background-color 0.15s ease;
+}
+
+.orders__tab:hover {
+  background: var(--honey-pale);
+}
+
+.orders__tab[aria-pressed="true"] {
+  background: var(--honey);
+  box-shadow: 0 4px 0 var(--ink);
+}
+
+.orders__tab:focus-visible {
+  outline: 3px solid var(--violet);
+  outline-offset: 3px;
+}
+
+.orders__empty {
+  padding: 1.5rem;
+  border: var(--stroke) dashed var(--ink);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  text-align: center;
+}
+
+/* ---------- Tarjeta de pedido ---------- */
+
+.orders__list {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.order {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 3vw, 1.4rem);
+  border: var(--stroke) solid var(--ink);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--pop);
+}
+
+.order__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+.order__folio {
+  font-size: clamp(1.2rem, 3vw, 1.45rem);
+}
+
+.order__date {
+  color: var(--text-soft);
+  font-size: 0.92rem;
+}
+
+.order__summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+}
+
+.order__total {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.order__eta,
+.order__quote {
+  padding: 0.5rem 0.9rem;
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-sm);
+  background: var(--violet-pale);
+  font-weight: 500;
+}
+
+/* Detalle desplegable (sin JavaScript) */
+.order__more summary {
+  display: inline-block;
+  padding: 0.3rem 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.order__more summary:focus-visible {
+  outline: 3px solid var(--violet);
+  outline-offset: 3px;
+}
+
+.order__detail {
+  display: grid;
+  gap: 0.6rem;
+  padding-top: 0.75rem;
+}
+
+.order__line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px dashed rgb(17 17 17 / 0.3);
+}
+
+.order__line-name {
+  font-weight: 600;
+}
+
+.order__line-meta,
+.order__note {
+  color: var(--text-soft);
+  font-size: 0.92rem;
+}
+
+.order__line-price {
+  flex: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.order__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  padding-bottom: 6px;
+}
+
+.order__locked {
+  color: var(--text-soft);
+  font-size: 0.92rem;
+}
+
+/* ---------- Cancelar ---------- */
+
+.btn--danger {
+  --btn-bg: #ff8a8a;
+  --btn-bg-hover: #ffaaaa;
+}
+
+.cancel-dialog {
+  /* margin: auto centra el cuadro; el reset del sitio lo dejaba pegado arriba a la izquierda */
+  margin: auto;
+  width: min(92vw, 30rem);
+  max-height: 92vh;
+  overflow-y: auto;
+  padding: 0;
+  border: var(--stroke) solid var(--ink);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: var(--pop-lg);
+}
+
+.cancel-dialog::backdrop {
+  background: rgb(17 17 17 / 0.55);
+}
+
+.cancel-dialog__box {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.cancel-dialog__title {
+  font-size: 1.4rem;
+}
+
+.cancel-dialog__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1rem;
+  padding-bottom: 6px;
+}
+
+@media (max-width: 479px) {
+  .cancel-dialog__actions .btn,
+  .orders__actions .btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recuperar contraseña | Makka Studio</title>
+  <meta name="description" content="Recupera el acceso a tu cuenta de Makka Studio.">
+  <meta name="theme-color" content="#f8af04">
+  <link rel="icon" type="image/png" href="assets/img/brand/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/pages/auth.css">
+</head>
+<body class="page-auth">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header site-header--simple">
+    <div class="container site-header__inner">
+      <a class="site-header__brand" href="index.html" aria-label="Makka Studio, ir al inicio">
+        <img src="assets/img/brand/logo-horizontal.webp" alt="Makka Studio" width="900" height="255">
+      </a>
+      <a class="btn btn--white btn--sm" href="index.html">Volver al inicio</a>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="auth" aria-labelledby="rec-titulo">
+      <div class="auth-card">
+        <div class="auth-bee"><img class="auth-bee__img" src="assets/img/brand/bee.webp" alt="" width="700" height="598"></div>
+
+        <div class="auth-card__head">
+          <h1 class="auth-card__title" id="rec-titulo">¿Olvidaste tu contraseña?</h1>
+          <p class="auth-card__text" id="rec-texto">Escríbenos por WhatsApp con el correo de tu cuenta y te mandamos un enlace para crear una nueva.</p>
+        </div>
+
+        <noscript><p class="auth-alert">Para recuperar tu contraseña necesitas activar JavaScript en tu navegador.</p></noscript>
+
+        <!-- Ya hay sesión -->
+        <div class="auth-done" id="rec-ya" hidden>
+          <p class="auth-notice">Ya tienes la sesión iniciada. Puedes cambiar tu contraseña desde tu perfil.</p>
+          <div class="auth-done__actions">
+            <a class="btn btn--honey" href="perfil.html">Ir a mi perfil</a>
+          </div>
+        </div>
+
+        <form class="auth-form" id="rec-form" novalidate hidden>
+          <div class="form-group">
+            <label class="form-label" for="rec-correo">Correo electrónico</label>
+            <div class="field"><input class="field__input" id="rec-correo" name="correo" type="email" inputmode="email" autocomplete="email" placeholder="tucorreo@ejemplo.com" maxlength="120" aria-describedby="err-correo"></div>
+            <p class="form-error" id="err-correo" hidden></p>
+          </div>
+
+          <button class="btn btn--honey btn--lg btn--block" type="submit">Pedir enlace por WhatsApp</button>
+
+          <div class="auth-links">
+            <a href="login.html">Volver a iniciar sesión</a>
+          </div>
+        </form>
+
+        <!-- Éxito -->
+        <div class="auth-done" id="rec-exito" hidden>
+          <p class="auth-notice" id="rec-exito-texto" role="status" tabindex="-1">Abrimos WhatsApp con tu mensaje listo. Envíalo y, cuando confirmemos que eres tú, te mandamos el enlace para crear tu contraseña nueva.</p>
+          <div class="auth-demo" id="rec-demo" hidden>
+            <p><strong>Modo de prueba.</strong> Esto lo hará la tienda desde el Dashboard: genera un enlace y te lo manda por WhatsApp. Abre aquí un enlace de ejemplo (vence en 24 horas). No aparecerá en el sitio real.</p>
+            <a class="btn btn--violet btn--sm" id="rec-demo-enlace" href="restablecer-contrasena.html">Abrir enlace de prueba</a>
+          </div>
+          <p class="form-hint">¿No se abrió WhatsApp? Escríbenos al <a href="tel:+524444482898">52 444 448 2898</a> o por <a href="https://www.instagram.com/makka.studio3d/" target="_blank" rel="noopener noreferrer">Instagram</a>. También puedes <button class="auth-link-btn" id="rec-otro" type="button">intentar con otro correo</button>.</p>
+          <div class="auth-done__actions">
+            <a class="btn btn--honey" href="login.html">Volver a iniciar sesión</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div class="site-footer__badge">
+          <img src="assets/img/brand/bee.webp" alt="Makka Studio" width="700" height="598" loading="lazy">
+        </div>
+
+        <div>
+          <h2 class="site-footer__title">Contáctanos</h2>
+          <ul class="contact-list">
+            <li>
+              <a class="contact-list__link" href="tel:+524444482898">
+                <span class="contact-list__icon"><img src="assets/img/icons/phone.svg" alt="" width="24" height="24"></span>
+                <span>
+                  <span class="contact-list__label">Teléfono</span>
+                  <span class="contact-list__value">52 444 448 2898</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contact-list__link" href="mailto:makka.studio3d@gmail.com">
+                <span class="contact-list__icon"><img src="assets/img/icons/mail.svg" alt="" width="24" height="24"></span>
+                <span>
+                  <span class="contact-list__label">Correo</span>
+                  <span class="contact-list__value">makka.studio3d@gmail.com</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contact-list__link" href="https://www.instagram.com/makka.studio3d/" target="_blank" rel="noopener noreferrer">
+                <span class="contact-list__icon"><img src="assets/img/icons/instagram.svg" alt="" width="24" height="24"></span>
+                <span>
+                  <span class="contact-list__label">Instagram</span>
+                  <span class="contact-list__value">@makka.studio3d</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="site-footer__farewell">
+          <p class="site-footer__quote">Y recuerda que nada es tan imposible de crear.</p>
+          <p class="site-footer__thanks">Gracias por confiar en nosotros.</p>
+          <p class="site-footer__sign">- Makka Studio</p>
+        </div>
+      </div>
+
+      <div class="site-footer__legal">
+        <p>© 2026 Makka Studio. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/components/product-card.js" defer></script>
+  <script src="assets/js/services/session.js" defer></script>
+  <script src="assets/js/services/auth.js" defer></script>
+  <script src="assets/js/pages/recuperar.js" defer></script>
+</body>
+</html>

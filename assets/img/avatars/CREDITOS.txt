@@ -1,0 +1,4 @@
+Ilustraciones de los avatares: 无糖大列巴 (No Pirates).
+Recortadas de una hoja de stickers de 16 animalitos que nos compartió el equipo.
+PENDIENTE antes de publicar: confirmar con la autora o autor que podemos usarlas en un sitio comercial.
+Si no hay permiso, reemplazar los 16 .webp de esta carpeta conservando los nombres (la lista está en assets/js/components/avatar.js).

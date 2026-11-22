@@ -1,0 +1,16 @@
+/* Colores de los estatus (brief). Para cambiar el color de un estatus, edita su línea. Lo usan Mis compras y el panel del administrador. */
+
+.status {
+  background: var(--white);
+}
+
+.status--en-revision { background: #ffe27a; }       /* Amarillo */
+.status--pago-pendiente { background: #ffb347; }    /* Naranja */
+.status--pago-validado { background: #c6f0b0; }     /* Verde claro */
+.status--en-produccion { background: #9ccfff; }     /* Azul */
+.status--enviado { background: var(--violet-soft); } /* Violeta */
+.status--entregado { background: #6fd48a; }         /* Verde */
+.status--cotizado { background: var(--violet-soft); }
+.status--aceptado { background: #c6f0b0; }
+.status--cancelado,
+.status--rechazado { background: #d9d9d9; }         /* Gris */

@@ -1,0 +1,203 @@
+/* Mi perfil. Los avatares son imágenes de assets/img/avatars/ (lista en components/avatar.js). */
+
+.profile {
+  padding-block: clamp(1.5rem, 4vw, 2.5rem) clamp(3rem, 7vw, 5rem);
+}
+
+.profile__layout {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 46rem;
+  margin-inline: auto;
+}
+
+.profile__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem 1rem;
+  padding-bottom: 6px;
+}
+
+/* ---------- Tarjetas ---------- */
+
+.profile__card {
+  display: grid;
+  gap: 1.1rem;
+  padding: clamp(1.1rem, 3vw, 1.6rem);
+  border: var(--stroke) solid var(--ink);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+}
+
+.profile__card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding-bottom: 4px;
+}
+
+.profile__title {
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
+}
+
+/* ---------- Saludo y avatar ---------- */
+
+.profile__hello {
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1.1rem 1.4rem;
+  background: var(--honey-pale);
+}
+
+.profile__hello-text {
+  display: grid;
+  justify-items: start;
+  gap: 0.5rem;
+  min-width: 0;
+  padding-bottom: 4px;
+}
+
+.profile__name {
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  overflow-wrap: anywhere;
+}
+
+.profile__name:focus {
+  outline: none;
+}
+
+.profile__mail {
+  color: var(--text-soft);
+  overflow-wrap: anywhere;
+}
+
+.avatar-picker {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 0.8rem;
+  padding-top: 1rem;
+  border-top: 2.5px dashed var(--ink);
+}
+
+.avatar-picker[hidden] {
+  display: none;
+}
+
+.avatar-picker__title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.avatar-picker__list .avatar {
+  width: 4.2rem;
+  height: 4.2rem;
+}
+
+.avatar-picker__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  padding-bottom: 4px;
+  list-style: none;
+}
+
+.avatar-picker__credit {
+  color: var(--text-soft);
+  font-size: 0.8rem;
+}
+
+/* ---------- Mis datos (lectura) ---------- */
+
+.profile__data {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem 1.5rem;
+}
+
+.profile__data dt {
+  color: var(--text-soft);
+  font-size: 0.9rem;
+}
+
+.profile__data dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.profile__data[hidden],
+.profile__form[hidden],
+.profile__ok[hidden],
+.profile__warn[hidden] {
+  display: none;
+}
+
+/* ---------- Formularios ---------- */
+
+.profile__form {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.profile__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1.1rem 1.5rem;
+}
+
+.profile__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1rem;
+  padding-bottom: 6px;
+}
+
+/* ---------- Avisos ---------- */
+
+.profile__ok,
+.profile__warn {
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.5rem 1rem;
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+
+.profile__ok {
+  background: var(--honey);
+}
+
+.profile__warn {
+  background: var(--honey-pale);
+}
+
+.profile__ok:focus,
+.profile__warn:focus {
+  outline: 3px solid var(--violet);
+  outline-offset: 3px;
+}
+
+.profile__logout {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 6px;
+}
+
+@media (max-width: 30rem) {
+  .profile__hello {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .profile__hello-text {
+    justify-items: center;
+  }
+}

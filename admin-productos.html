@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Productos | Makka Studio</title>
+  <meta name="description" content="Administra el catálogo de Makka Studio.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f8af04">
+  <link rel="icon" type="image/png" href="assets/img/brand/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/pages/admin.css">
+</head>
+<body class="page-admin" data-admin="productos" data-page-file="admin-productos.html">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <noscript><p class="admin-noscript">Para usar el panel necesitas activar JavaScript en tu navegador.</p></noscript>
+
+  <!-- Sin sesión o sin permiso -->
+  <div class="admin-block" id="admin-bloqueo" hidden>
+    <div class="state">
+      <img class="state__bee" src="assets/img/brand/bee.webp" alt="" width="700" height="598">
+      <h1 class="state__title" id="bloqueo-titulo">Esta zona es solo para el equipo</h1>
+      <p class="state__text" id="bloqueo-texto"></p>
+      <div class="admin-block__actions">
+        <a class="btn btn--violet" id="bloqueo-login" href="login.html?siguiente=admin-productos.html" hidden>Iniciar sesión</a>
+        <a class="btn btn--honey" href="index.html">Ir a la tienda</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin" id="admin-app" hidden>
+    <header class="admin-top">
+      <button class="admin-top__toggle" id="admin-toggle" type="button" aria-expanded="false" aria-controls="admin-side" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a class="admin-top__brand" href="dashboard.html" aria-label="Makka Studio, panel de control">
+        <img src="assets/img/brand/logo-horizontal.webp" alt="Makka Studio" width="900" height="255">
+      </a>
+      <span class="chip chip--pale admin-top__tag">Panel</span>
+
+      <div class="admin-top__actions">
+        <div class="user-menu" id="admin-menu">
+          <button class="user-menu__btn" id="admin-menu-btn" type="button" aria-expanded="false" aria-controls="admin-menu-lista">
+            <span class="user-menu__avatar" id="admin-avatar" aria-hidden="true"></span>
+            <span class="user-menu__name" id="admin-nombre">Admin</span>
+          </button>
+          <ul class="user-menu__list" id="admin-menu-lista" hidden>
+            <li><button class="user-menu__item user-menu__item--logout" id="admin-salir" type="button">Cerrar sesión</button></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <div class="admin-body">
+      <aside class="admin-side" id="admin-side" aria-label="Administración">
+        <div class="admin-side__top">
+          <p class="admin-side__label">Menú</p>
+          <nav aria-label="Secciones del panel">
+            <ul class="admin-nav" id="admin-nav"></ul>
+          </nav>
+        </div>
+        <div class="admin-side__foot">
+          <a class="admin-nav__link" href="index.html">
+            <span class="admin-nav__icon"><img src="assets/img/icons/store.svg" alt="" width="22" height="22"></span>
+            <span class="admin-nav__label">Ver tienda</span>
+          </a>
+          <button class="admin-nav__link" id="admin-salir-lado" type="button">
+            <span class="admin-nav__icon"><img src="assets/img/icons/logout.svg" alt="" width="22" height="22"></span>
+            <span class="admin-nav__label">Cerrar sesión</span>
+          </button>
+        </div>
+      </aside>
+
+      <div class="admin-main">
+        <main id="contenido" class="admin-content">
+          <section class="ord-head" aria-labelledby="prod-titulo">
+            <div>
+              <span class="chip chip--honey">Administración</span>
+              <h1 class="ord-head__title" id="prod-titulo" tabindex="-1">Productos</h1>
+              <p class="ord-head__text">Agrega, edita, oculta o elimina lo que se ve en el catálogo de la tienda.</p>
+            </div>
+            <div class="ord-head__tools">
+              <button class="btn btn--white btn--sm" id="prod-reset" type="button" hidden>Restaurar catálogo de ejemplo</button>
+              <button class="btn btn--honey" id="prod-nuevo" type="button"><img class="btn__icon" src="assets/img/icons/plus.svg" alt="" width="22" height="22">Agregar producto</button>
+            </div>
+          </section>
+
+          <section class="adm-toolbar" aria-label="Filtros">
+            <div class="field field--search adm-toolbar__search">
+              <img class="field__icon" src="assets/img/icons/search.svg" alt="" width="24" height="24">
+              <label class="sr-only" for="prod-buscar">Buscar productos</label>
+              <input class="field__input" id="prod-buscar" type="search" placeholder="Buscar productos..." autocomplete="off" maxlength="80">
+            </div>
+            <div class="adm-toolbar__select">
+              <label class="sr-only" for="prod-categoria">Categoría</label>
+              <select class="field__select" id="prod-categoria"><option value="">Todas las categorías</option></select>
+            </div>
+            <div class="adm-toolbar__select">
+              <label class="sr-only" for="prod-estado">Estado</label>
+              <select class="field__select" id="prod-estado">
+                <option value="">Visibles y ocultos</option>
+                <option value="visible">Visibles</option>
+                <option value="oculto">Ocultos</option>
+              </select>
+            </div>
+          </section>
+
+          <section class="dash-card" aria-labelledby="prod-titulo">
+            <div class="dash-empty" id="prod-vacio" hidden><p id="prod-vacio-texto">No encontramos productos con esos filtros.</p></div>
+            <table class="dash-table adm-table" id="prod-tabla" hidden>
+              <thead>
+                <tr><th scope="col">Imagen</th><th scope="col">Nombre</th><th scope="col">Categoría</th><th scope="col">Precio</th><th scope="col">Colores</th><th scope="col">Material</th><th scope="col">Estado</th><th scope="col">Acciones</th></tr>
+              </thead>
+              <tbody id="prod-cuerpo"></tbody>
+            </table>
+            <div class="adm-more">
+              <p class="dash-note" id="prod-contador" role="status"></p>
+              <button class="btn btn--white btn--sm" id="prod-mas" type="button" hidden>Mostrar más</button>
+            </div>
+          </section>
+
+          <dialog class="adm-dialog adm-dialog--wide" id="prod-dialogo" aria-labelledby="prod-form-titulo">
+            <form class="adm-dialog__box" id="prod-form" novalidate>
+              <h2 class="adm-dialog__title" id="prod-form-titulo" tabindex="-1">Agregar producto</h2>
+
+              <div class="adm-grid">
+                <div class="form-group adm-grid__full">
+                  <label class="form-label" for="pf-nombre">Nombre <span class="form-label__req">*</span></label>
+                  <div class="field"><input class="field__input" id="pf-nombre" type="text" maxlength="80" autocomplete="off"></div>
+                  <p class="form-error" id="err-pf-nombre" hidden></p>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="pf-categoria">Categoría <span class="form-label__req">*</span></label>
+                  <div class="field"><select class="field__select" id="pf-categoria"></select></div>
+                  <p class="form-error" id="err-pf-categoria" hidden></p>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="pf-precio">Precio (MXN) <span class="form-label__req">*</span></label>
+                  <div class="field"><input class="field__input" id="pf-precio" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00"></div>
+                  <p class="form-error" id="err-pf-precio" hidden></p>
+                </div>
+
+                <div class="form-group adm-grid__full">
+                  <label class="form-label" for="pf-descripcion">Mini descripción <span class="form-label__req">*</span></label>
+                  <div class="field"><input class="field__input" id="pf-descripcion" type="text" maxlength="160" autocomplete="off"></div>
+                  <p class="form-error" id="err-pf-descripcion" hidden></p>
+                </div>
+
+                <fieldset class="form-group">
+                  <legend class="form-label">Material <span class="form-label__req">*</span></legend>
+                  <div class="adm-checks">
+                    <label class="adm-check"><input type="checkbox" name="material" value="PLA"><span>PLA</span></label>
+                    <label class="adm-check"><input type="checkbox" name="material" value="PETG"><span>PETG</span></label>
+                  </div>
+                  <p class="form-error" id="err-pf-material" hidden></p>
+                </fieldset>
+
+                <div class="form-group">
+                  <label class="form-label" for="pf-unidad">Unidad del precio <span class="form-label__opt">Opcional</span></label>
+                  <div class="field"><input class="field__input" id="pf-unidad" type="text" maxlength="20" placeholder="el par, c/u" autocomplete="off"></div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="pf-medidas">Medidas <span class="form-label__opt">Opcional</span></label>
+                  <div class="field"><input class="field__input" id="pf-medidas" type="text" maxlength="40" placeholder="22 x 26 cm" autocomplete="off"></div>
+                </div>
+              </div>
+
+              <fieldset class="form-group adm-section">
+                <legend class="form-label">Imágenes <span class="form-label__req">*</span></legend>
+                <p class="form-hint">La primera es la imagen principal. JPG, PNG o WebP de hasta 5 MB cada una (máximo 6).</p>
+                <ul class="adm-images" id="pf-imagenes"></ul>
+                <div class="adm-upload">
+                  <label class="btn btn--white btn--sm" for="pf-archivos"><img class="btn__icon" src="assets/img/icons/image.svg" alt="" width="22" height="22">Agregar imágenes</label>
+                  <input class="sr-only" id="pf-archivos" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+                </div>
+                <p class="form-error" id="err-pf-imagenes" hidden></p>
+              </fieldset>
+
+              <fieldset class="form-group adm-section">
+                <legend class="form-label">Colores disponibles <span class="form-label__opt">Opcional</span></legend>
+                <p class="form-hint">Cada color puede llevar su propia imagen; el cliente la verá al elegirlo.</p>
+                <ul class="adm-colors" id="pf-colores"></ul>
+                <div class="adm-color-add">
+                  <label class="sr-only" for="pf-color-nuevo">Color del inventario de filamentos</label>
+                  <select class="field__select" id="pf-color-nuevo"></select>
+                  <button class="btn btn--white btn--sm" id="pf-color-agregar" type="button"><img class="btn__icon" src="assets/img/icons/plus.svg" alt="" width="22" height="22">Agregar color</button>
+                </div>
+                <p class="form-error" id="err-pf-colores" hidden></p>
+              </fieldset>
+
+              <div class="adm-switches">
+                <label class="adm-switch"><input type="checkbox" id="pf-disponible"><span class="adm-switch__track" aria-hidden="true"></span><span>Disponible (si no, se muestra "Agotado")</span></label>
+                <label class="adm-switch"><input type="checkbox" id="pf-visible"><span class="adm-switch__track" aria-hidden="true"></span><span>Visible en catálogo</span></label>
+                <label class="adm-switch"><input type="checkbox" id="pf-destacado"><span class="adm-switch__track" aria-hidden="true"></span><span>Destacado en el inicio ("Lo más querido", máximo 4)</span></label>
+              </div>
+
+              <p class="form-error" id="pf-error" role="alert" hidden></p>
+              <div class="adm-dialog__actions">
+                <button class="btn btn--honey" type="submit">Guardar producto</button>
+                <button class="btn btn--white" id="pf-cancelar" type="button">Cancelar</button>
+              </div>
+            </form>
+          </dialog>
+
+          <dialog class="adm-dialog" id="adm-confirm" aria-labelledby="adm-confirm-title">
+            <div class="adm-dialog__box">
+              <h2 class="adm-dialog__title" id="adm-confirm-title">¿Continuar?</h2>
+              <p id="adm-confirm-text"></p>
+              <div class="adm-dialog__actions">
+                <button class="btn btn--honey" id="adm-confirm-ok" type="button">Continuar</button>
+                <button class="btn btn--white" id="adm-confirm-cancel" type="button">Cancelar</button>
+              </div>
+            </div>
+          </dialog>
+        </main>
+
+        <footer class="site-footer site-footer--panel">
+    <div class="container">
+      <div class="panel-footer">
+        <div class="site-footer__badge">
+          <img src="assets/img/brand/bee.webp" alt="Makka Studio" width="700" height="598" loading="lazy">
+        </div>
+        <div>
+          <p class="panel-footer__title">Panel de Makka Studio</p>
+          <p class="panel-footer__text">Cada pedido bien cuidado es una pieza más que sale de nuestras manos. ¡Buen trabajo, equipo!</p>
+        </div>
+      </div>
+
+      <div class="site-footer__legal">
+        <p>© 2026 Makka Studio. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/components/toast.js" defer></script>
+  <script src="assets/js/components/product-card.js" defer></script>
+  <script src="assets/js/services/session.js" defer></script>
+  <script src="assets/js/services/auth.js" defer></script>
+  <script src="assets/js/services/compras.js" defer></script>
+  <script src="assets/js/services/solicitudes.js" defer></script>
+  <script src="assets/js/data/productos.js" defer></script>
+  <script src="assets/js/data/filamentos.js" defer></script>
+  <script src="assets/js/services/productos.js" defer></script>
+  <script src="assets/js/services/demo-data.js" defer></script>
+  <script src="assets/js/components/avatar.js" defer></script>
+  <script src="assets/js/components/admin-shell.js" defer></script>
+  <script src="assets/js/components/admin-utils.js" defer></script>
+  <script src="assets/js/pages/admin-productos.js" defer></script>
+</body>
+</html>

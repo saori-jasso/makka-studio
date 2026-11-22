@@ -1,0 +1,139 @@
+/* Zona para subir archivos (arrastrar o elegir) y lista de archivos cargados. */
+
+.drop {
+  position: relative;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.drop__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.drop__area {
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  padding: 1.25rem 1rem;
+  border: var(--stroke) dashed var(--ink);
+  border-radius: var(--radius-md);
+  background: var(--cream);
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.drop__area strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.drop__area span {
+  color: var(--text-soft);
+  font-size: 0.88rem;
+}
+
+.drop__area:hover,
+.drop.is-dragover .drop__area {
+  background: var(--honey-pale);
+}
+
+.drop.is-dragover .drop__area {
+  border-style: solid;
+}
+
+.drop__input:focus-visible + .drop__area {
+  outline: 3px solid var(--violet);
+  outline-offset: 3px;
+}
+
+.drop__files {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.drop__files:empty {
+  display: none;
+}
+
+.drop__files--images {
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  padding: 0.45rem 0.55rem;
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+}
+
+.file-item__thumb {
+  flex: none;
+  width: 2.8rem;
+  height: 2.8rem;
+  object-fit: cover;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+}
+
+.file-item__icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--violet-soft);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.file-item__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.file-item__name {
+  overflow: hidden;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-item__size {
+  color: var(--text-soft);
+  font-size: 0.78rem;
+}
+
+.file-item__remove {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  background: var(--honey-pale);
+}
+
+.file-item__remove:hover {
+  background: var(--honey);
+}
+
+.file-item__remove img {
+  width: 1.05rem;
+  height: 1.05rem;
+}

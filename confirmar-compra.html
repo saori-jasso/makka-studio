@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confirmar compra | Makka Studio</title>
+  <meta name="description" content="Paga por transferencia y sube tu comprobante para confirmar tu compra en Makka Studio.">
+  <meta name="theme-color" content="#f8af04">
+  <link rel="icon" type="image/png" href="assets/img/brand/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/pages/carrito.css">
+  <link rel="stylesheet" href="assets/css/pages/confirmar.css">
+</head>
+<body data-buyers-only>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__brand" href="index.html" aria-label="Makka Studio, ir al inicio">
+        <img src="assets/img/brand/logo-horizontal.webp" alt="Makka Studio" width="900" height="255">
+      </a>
+
+      <div class="site-header__panel" id="menu-principal">
+        <nav class="main-nav" aria-label="Principal">
+          <ul class="main-nav__list">
+            <li><a class="main-nav__link" href="index.html">Inicio</a></li>
+            <li><a class="main-nav__link" href="catalogo.html">Catálogo</a></li>
+            <li><a class="main-nav__link" href="pedidos-personalizados.html">Pedidos personalizados</a></li>
+          </ul>
+        </nav>
+
+        <div class="site-header__auth">
+          <a class="btn btn--violet btn--sm" href="login.html">
+            <img class="btn__icon" src="assets/img/icons/user.svg" alt="" width="24" height="24">
+            Iniciar sesión
+          </a>
+          <a class="btn btn--honey btn--sm" href="registro.html">
+            <img class="btn__icon" src="assets/img/icons/user-plus.svg" alt="" width="24" height="24">
+            Crear cuenta
+          </a>
+        </div>
+      </div>
+
+      <a class="cart-btn" href="carrito.html" aria-label="Ver mi carrito">
+        <img src="assets/img/icons/cart.svg" alt="" width="24" height="24">
+      </a>
+
+      <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="page-head" aria-labelledby="compra-titulo">
+      <div class="container page-head__inner">
+        <div class="page-head__copy">
+          <span class="chip chip--pale">Último paso</span>
+          <h1 class="page-head__title" id="compra-titulo">Confirma tu <span class="page-head__mark">compra</span></h1>
+          <p class="page-head__text">Paga por transferencia y sube tu comprobante. Lo revisamos y empezamos a imprimir tu pedido.</p>
+        </div>
+        <img class="page-head__art" src="assets/img/brand/bee.webp" alt="" width="700" height="598">
+      </div>
+    </section>
+
+    <section class="section checkout" aria-label="Confirmar compra">
+      <div class="container">
+        <noscript><p class="catalog__noscript">Para confirmar tu compra necesitas activar JavaScript en tu navegador.</p></noscript>
+
+        <!-- Pasos (solo informativos) -->
+        <ol class="stepper" aria-label="Pasos de tu compra">
+          <li class="stepper__item"><span class="stepper__num">1</span> Resumen</li>
+          <li class="stepper__item"><span class="stepper__num">2</span> Transfiere</li>
+          <li class="stepper__item"><span class="stepper__num">3</span> Sube tu comprobante</li>
+        </ol>
+
+        <!-- Sin sesión -->
+        <div class="state" id="estado-sesion" hidden>
+          <img class="state__bee" src="assets/img/brand/bee.webp" alt="" width="700" height="598" loading="lazy">
+          <h2 class="state__title">Inicia sesión para continuar</h2>
+          <p class="state__text">Necesitas una cuenta para confirmar tu compra. Tu carrito se queda guardado.</p>
+          <div class="checkout__actions">
+            <a class="btn btn--violet" href="login.html?siguiente=confirmar-compra.html">Iniciar sesión</a>
+            <a class="btn btn--honey" href="registro.html?siguiente=confirmar-compra.html">Crear cuenta</a>
+          </div>
+        </div>
+
+        <!-- Carrito vacío -->
+        <div class="state" id="estado-vacio" hidden>
+          <img class="state__bee" src="assets/img/brand/bee.webp" alt="" width="700" height="598" loading="lazy">
+          <h2 class="state__title">Tu carrito está vacío</h2>
+          <p class="state__text">Agrega algo desde el catálogo para poder confirmar tu compra.</p>
+          <a class="btn btn--honey" href="catalogo.html">Ver catálogo</a>
+        </div>
+
+        <!-- Éxito -->
+        <div class="state" id="estado-exito" role="status" hidden>
+          <img class="state__bee" src="assets/img/brand/bee.webp" alt="" width="700" height="598" loading="lazy">
+          <h2 class="state__title" id="exito-titulo" tabindex="-1">¡Recibimos tu comprobante!</h2>
+          <p class="state__text">Estamos validando tu pago. Cuando lo confirmemos, comenzamos a imprimir tu pedido y te avisamos por WhatsApp. El estatus y la fecha estimada de entrega los verás en Mis compras.</p>
+          <p class="checkout__status">Pedido <strong id="exito-folio"></strong> · <span class="chip chip--pale">Pago pendiente de validación</span></p>
+          <a class="btn btn--honey" href="mis-compras.html">Ver mis compras</a>
+        </div>
+
+        <!-- Contenido -->
+        <div class="cart__layout" id="compra-contenido" hidden>
+          <div class="checkout__main">
+            <section class="checkout__card" aria-labelledby="resumen-titulo">
+              <h2 class="checkout__title" id="resumen-titulo">1. Resumen de tu pedido</h2>
+              <ul class="checkout__lines" id="compra-lineas"></ul>
+            </section>
+
+            <section class="checkout__card" aria-labelledby="pagar-titulo">
+              <h2 class="checkout__title" id="pagar-titulo">2. Cómo pagar</h2>
+              <ol class="checkout__steps">
+                <li>Realiza una transferencia por el total de tu pedido a esta cuenta:</li>
+              </ol>
+              <!-- DATOS DE LA CUENTA: para cambiar de cuenta, edita solo estos tres textos (banco, titular y CLABE). -->
+              <dl class="bank">
+                <div><dt>Banco</dt><dd>BBVA</dd></div>
+                <div><dt>Titular</dt><dd>Saori Nayelli Jasso Pelayo</dd></div>
+                <div><dt>CLABE</dt><dd>012180015520383650</dd></div>
+                <div><dt>Concepto</dt><dd id="compra-concepto"></dd></div>
+                <div><dt>Monto</dt><dd id="compra-monto"></dd></div>
+              </dl>
+              <ol class="checkout__steps" start="2">
+                <li>Toma una captura de pantalla del comprobante de tu transferencia.</li>
+                <li>Súbela aquí abajo y la revisaremos.</li>
+                <li>Cuando validemos tu pago, comenzamos a imprimir tu pedido y te avisamos por WhatsApp. En ese momento te confirmamos también la fecha estimada de entrega.</li>
+              </ol>
+            </section>
+
+            <section class="checkout__card" aria-labelledby="subir-titulo">
+              <h2 class="checkout__title" id="subir-titulo">3. Sube tu comprobante</h2>
+              <div class="drop" id="drop-comprobante">
+                <input class="drop__input" id="comprobante" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" aria-describedby="ayuda-comprobante">
+                <label class="drop__area" for="comprobante">
+                  <img src="assets/img/icons/upload.svg" alt="" width="32" height="32">
+                  <strong>Arrastra tu captura aquí o haz clic para seleccionarla.</strong>
+                  <span id="ayuda-comprobante">Formatos JPG o PNG, máximo 5 MB.</span>
+                </label>
+                <ul class="drop__files" id="lista-comprobante"></ul>
+              </div>
+              <p class="form-error" id="err-comprobante" role="alert" hidden></p>
+            </section>
+          </div>
+
+          <aside class="cart__aside" aria-label="Total de tu compra">
+            <div class="summary">
+              <h2 class="summary__title">Total</h2>
+              <dl class="summary__rows" aria-live="polite">
+                <div><dt id="resumen-piezas">Subtotal</dt><dd id="resumen-subtotal"></dd></div>
+                <div><dt>Envío en San Luis Potosí</dt><dd><span class="summary__free">Gratis</span></dd></div>
+                <div class="summary__total"><dt>Total</dt><dd id="resumen-total"></dd></div>
+              </dl>
+
+              <p class="cart-notice" id="compra-error" role="alert" hidden>No pudimos guardar tu comprobante. Intenta de nuevo.</p>
+
+              <div class="summary__actions">
+                <button class="btn btn--honey btn--lg" id="compra-enviar" type="button" disabled>Enviar comprobante</button>
+                <a class="btn btn--white" href="carrito.html">Volver al carrito</a>
+              </div>
+              <p class="summary__login">El botón se activa cuando subes tu comprobante.</p>
+            </div>
+
+            <div class="delivery">
+              <h2 class="delivery__title">Entrega gratis en San Luis Potosí</h2>
+              <p class="delivery__text">Al validar tu pago, Makka Studio te escribirá para ponerse de acuerdo contigo en el horario y el punto de entrega que prefieras.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div class="site-footer__badge">
+          <img src="assets/img/brand/bee.webp" alt="Makka Studio" width="700" height="598" loading="lazy">
+        </div>
+
+        <div>
+          <h2 class="site-footer__title">Contáctanos</h2>
+          <ul class="contact-list">
+            <li>
+              <a class="contact-list__link" href="tel:+524444482898">
+                <span class="contact-list__icon"><img src="assets/img/icons/phone.svg" alt="" width="24" height="24"></span>
+                <span>
+                  <span class="contact-list__label">Teléfono</span>
+                  <span class="contact-list__value">52 444 448 2898</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contact-list__link" href="mailto:makka.studio3d@gmail.com">
+                <span class="contact-list__icon"><img src="assets/img/icons/mail.svg" alt="" width="24" height="24"></span>
+                <span>
+                  <span class="contact-list__label">Correo</span>
+                  <span class="contact-list__value">makka.studio3d@gmail.com</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contact-list__link" href="https://www.instagram.com/makka.studio3d/" target="_blank" rel="noopener noreferrer">
+                <span class="contact-list__icon"><img src="assets/img/icons/instagram.svg" alt="" width="24" height="24"></span>
+                <span>
+                  <span class="contact-list__label">Instagram</span>
+                  <span class="contact-list__value">@makka.studio3d</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="site-footer__farewell">
+          <p class="site-footer__quote">Y recuerda que nada es tan imposible de crear.</p>
+          <p class="site-footer__thanks">Gracias por confiar en nosotros.</p>
+          <p class="site-footer__sign">- Makka Studio</p>
+        </div>
+      </div>
+
+      <div class="site-footer__legal">
+        <p>© 2026 Makka Studio. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/components/nav.js" defer></script>
+  <script src="assets/js/components/toast.js" defer></script>
+  <script src="assets/js/components/product-card.js" defer></script>
+  <script src="assets/js/services/session.js" defer></script>
+  <script src="assets/js/components/avatar.js" defer></script>
+  <script src="assets/js/components/user-menu.js" defer></script>
+  <script src="assets/js/components/role-guard.js" defer></script>
+  <script src="assets/js/services/cart.js" defer></script>
+  <script src="assets/js/services/compras.js" defer></script>
+  <script src="assets/js/data/productos.js" defer></script>
+  <script src="assets/js/services/api.js" defer></script>
+  <script src="assets/js/pages/confirmar.js" defer></script>
+</body>
+</html>

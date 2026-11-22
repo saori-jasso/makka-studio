@@ -1,0 +1,60 @@
+.state {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  padding: clamp(2rem, 6vw, 3.5rem) 1.5rem;
+  border: var(--stroke) dashed var(--ink);
+  border-radius: var(--radius-xl);
+  background: var(--white);
+  text-align: center;
+}
+
+.state__bee {
+  width: clamp(104px, 16vw, 150px);
+  height: auto;
+}
+
+.state__title {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+}
+
+.state__text {
+  max-width: 30rem;
+}
+
+.skeleton-card {
+  display: grid;
+  gap: 0.9rem;
+  padding: 0.85rem 0.85rem 1.4rem;
+  border: var(--stroke) solid var(--ink);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--pop);
+}
+
+.skeleton {
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, #efe6cf 25%, #fbf5e4 50%, #efe6cf 75%) 0 0 / 200% 100%;
+  animation: skeleton-shimmer 1.4s linear infinite;
+}
+
+.skeleton--media {
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+}
+
+.skeleton--line {
+  height: 1rem;
+  width: 70%;
+  margin-inline: auto;
+}
+
+.skeleton--short {
+  width: 40%;
+}
+
+@keyframes skeleton-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}

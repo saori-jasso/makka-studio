@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel de control | Makka Studio</title>
+  <meta name="description" content="Panel de administración de Makka Studio.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f8af04">
+  <link rel="icon" type="image/png" href="assets/img/brand/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/pages/admin.css">
+</head>
+<body class="page-admin" data-admin="dashboard" data-page-file="dashboard.html">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <noscript><p class="admin-noscript">Para usar el panel necesitas activar JavaScript en tu navegador.</p></noscript>
+
+  <!-- Sin sesión o sin permiso -->
+  <div class="admin-block" id="admin-bloqueo" hidden>
+    <div class="state">
+      <img class="state__bee" src="assets/img/brand/bee.webp" alt="" width="700" height="598">
+      <h1 class="state__title" id="bloqueo-titulo">Esta zona es solo para el equipo</h1>
+      <p class="state__text" id="bloqueo-texto"></p>
+      <div class="admin-block__actions">
+        <a class="btn btn--violet" id="bloqueo-login" href="login.html?siguiente=dashboard.html" hidden>Iniciar sesión</a>
+        <a class="btn btn--honey" href="index.html">Ir a la tienda</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin" id="admin-app" hidden>
+    <header class="admin-top">
+      <button class="admin-top__toggle" id="admin-toggle" type="button" aria-expanded="false" aria-controls="admin-side" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a class="admin-top__brand" href="dashboard.html" aria-label="Makka Studio, panel de control">
+        <img src="assets/img/brand/logo-horizontal.webp" alt="Makka Studio" width="900" height="255">
+      </a>
+      <span class="chip chip--pale admin-top__tag">Panel</span>
+
+      <div class="admin-top__actions">
+        <div class="user-menu" id="admin-menu">
+          <button class="user-menu__btn" id="admin-menu-btn" type="button" aria-expanded="false" aria-controls="admin-menu-lista">
+            <span class="user-menu__avatar" id="admin-avatar" aria-hidden="true"></span>
+            <span class="user-menu__name" id="admin-nombre">Admin</span>
+          </button>
+          <ul class="user-menu__list" id="admin-menu-lista" hidden>
+            <li><button class="user-menu__item user-menu__item--logout" id="admin-salir" type="button">Cerrar sesión</button></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <div class="admin-body">
+      <aside class="admin-side" id="admin-side" aria-label="Administración">
+        <div class="admin-side__top">
+          <p class="admin-side__label">Menú</p>
+          <nav aria-label="Secciones del panel">
+            <ul class="admin-nav" id="admin-nav"></ul>
+          </nav>
+        </div>
+        <div class="admin-side__foot">
+          <a class="admin-nav__link" href="index.html">
+            <span class="admin-nav__icon"><img src="assets/img/icons/store.svg" alt="" width="22" height="22"></span>
+            <span class="admin-nav__label">Ver tienda</span>
+          </a>
+          <button class="admin-nav__link" id="admin-salir-lado" type="button">
+            <span class="admin-nav__icon"><img src="assets/img/icons/logout.svg" alt="" width="22" height="22"></span>
+            <span class="admin-nav__label">Cerrar sesión</span>
+          </button>
+        </div>
+      </aside>
+
+      <div class="admin-main">
+        <main id="contenido" class="admin-content">
+          <!-- Saludo -->
+          <section class="dash-hello" aria-labelledby="dash-titulo">
+            <div class="avatar avatar--lg" id="dash-avatar" aria-hidden="true"></div>
+            <div class="dash-hello__text">
+              <span class="chip chip--honey">Panel de control</span>
+              <h1 class="dash-hello__title" id="dash-titulo" tabindex="-1">Hola</h1>
+              <p class="dash-hello__mood" role="status">
+                <img src="assets/img/icons/clock.svg" alt="" width="20" height="20">
+                <span id="dash-animo"></span>
+              </p>
+            </div>
+            <a class="btn btn--honey dash-hello__cta" id="dash-cta" href="admin-pedidos.html?tab=pagos" hidden>
+              <img class="btn__icon" src="assets/img/icons/card.svg" alt="" width="22" height="22">
+              Validar pagos
+            </a>
+          </section>
+
+          <!-- Indicadores -->
+          <section class="dash-kpis" aria-label="Indicadores">
+            <a class="kpi kpi--orange" href="admin-pedidos.html?tab=pagos">
+              <span class="kpi__icon" aria-hidden="true"><img class="kpi__img" src="assets/img/icons/coin.svg" alt="" width="22" height="22"></span>
+              <p class="kpi__value" id="kpi-pagos">0</p>
+              <h2 class="kpi__label">Pagos por validar</h2>
+            </a>
+            <a class="kpi kpi--blue" href="admin-pedidos.html?tab=produccion">
+              <span class="kpi__icon" aria-hidden="true"><img class="kpi__img" src="assets/img/icons/printer.svg" alt="" width="22" height="22"></span>
+              <p class="kpi__value" id="kpi-produccion">0</p>
+              <h2 class="kpi__label">Pedidos en producción</h2>
+            </a>
+            <a class="kpi kpi--violet" href="admin-personalizados.html?tab=revision">
+              <span class="kpi__icon" aria-hidden="true"><img class="kpi__img" src="assets/img/icons/sparkle.svg" alt="" width="22" height="22"></span>
+              <p class="kpi__value" id="kpi-solicitudes">0</p>
+              <h2 class="kpi__label">Solicitudes personalizadas nuevas</h2>
+            </a>
+            <a class="kpi kpi--green" href="admin-reporte.html">
+              <span class="kpi__icon" aria-hidden="true"><img class="kpi__img" src="assets/img/icons/receipt.svg" alt="" width="22" height="22"></span>
+              <p class="kpi__value" id="kpi-ventas">$0.00</p>
+              <h2 class="kpi__label">Ventas del mes <small>(MXN)</small></h2>
+            </a>
+          </section>
+
+          <div class="dash-grid">
+            <!-- Últimos pedidos -->
+            <section class="dash-card" aria-labelledby="ultimos-titulo">
+              <div class="dash-card__head">
+                <h2 class="dash-card__title" id="ultimos-titulo">Últimos pedidos</h2>
+                <a class="btn btn--white btn--sm" href="admin-pedidos.html">Ver todos</a>
+              </div>
+
+              <div class="dash-empty" id="ultimos-vacio" hidden>
+                <p>Aún no hay pedidos. Cuando lleguen, aparecerán aquí.</p>
+                <button class="btn btn--white btn--sm" id="demo-cargar" type="button" hidden>Cargar datos de ejemplo</button>
+              </div>
+
+              <table class="dash-table" id="ultimos-tabla" hidden>
+                <thead>
+                  <tr><th scope="col">Pedido</th><th scope="col">Cliente</th><th scope="col">Total</th><th scope="col">Estatus</th></tr>
+                </thead>
+                <tbody id="ultimos-cuerpo"></tbody>
+              </table>
+            </section>
+
+            <div class="dash-col">
+              <!-- Acciones rápidas -->
+              <section class="dash-card" aria-labelledby="acciones-titulo">
+                <h2 class="dash-card__title" id="acciones-titulo">Acciones rápidas</h2>
+                <div class="dash-actions">
+                  <a class="btn btn--honey" href="admin-productos.html?nuevo=1"><img class="btn__icon" src="assets/img/icons/box.svg" alt="" width="22" height="22">Agregar producto</a>
+                  <a class="btn btn--violet" href="admin-pedidos.html?tab=pagos"><img class="btn__icon" src="assets/img/icons/card.svg" alt="" width="22" height="22">Validar pagos</a>
+                  <a class="btn btn--white" href="admin-personalizados.html?tab=revision"><img class="btn__icon" src="assets/img/icons/sparkle.svg" alt="" width="22" height="22">Ver solicitudes</a>
+                  <a class="btn btn--white" href="admin-reporte.html"><img class="btn__icon" src="assets/img/icons/chart.svg" alt="" width="22" height="22">Ver reporte</a>
+                </div>
+              </section>
+
+              <!-- Ayuda con contraseñas -->
+              <section class="dash-card" aria-labelledby="clave-titulo">
+                <h2 class="dash-card__title" id="clave-titulo">Ayuda con contraseñas</h2>
+                <p class="dash-note">Si un cliente olvidó su contraseña, confirma que es él (por ejemplo, con su teléfono registrado o el folio de un pedido) y genera su enlace. Vence en 24 horas y se usa una sola vez.</p>
+
+                <form class="dash-form" id="enlace-form" novalidate>
+                  <div class="form-group">
+                    <label class="form-label" for="enlace-correo">Correo de la cuenta</label>
+                    <div class="field"><input class="field__input" id="enlace-correo" name="correo" type="email" inputmode="email" autocomplete="off" placeholder="cliente@ejemplo.com" maxlength="120" aria-describedby="err-enlace"></div>
+                    <p class="form-error" id="err-enlace" hidden></p>
+                  </div>
+                  <button class="btn btn--honey" type="submit"><img class="btn__icon" src="assets/img/icons/key.svg" alt="" width="22" height="22">Generar enlace</button>
+                </form>
+
+                <div class="dash-result" id="enlace-resultado" hidden>
+                  <label class="form-label" for="enlace-url">Enlace para <span id="enlace-quien"></span></label>
+                  <div class="field"><input class="field__input" id="enlace-url" type="text" readonly></div>
+                  <div class="dash-result__actions">
+                    <button class="btn btn--violet btn--sm" id="enlace-copiar" type="button"><img class="btn__icon" src="assets/img/icons/copy.svg" alt="" width="22" height="22">Copiar enlace</button>
+                    <a class="btn btn--white btn--sm" id="enlace-whatsapp" href="#" target="_blank" rel="noopener noreferrer" hidden>Mandar por WhatsApp</a>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+
+        <footer class="site-footer site-footer--panel">
+    <div class="container">
+      <div class="panel-footer">
+        <div class="site-footer__badge">
+          <img src="assets/img/brand/bee.webp" alt="Makka Studio" width="700" height="598" loading="lazy">
+        </div>
+        <div>
+          <p class="panel-footer__title">Panel de Makka Studio</p>
+          <p class="panel-footer__text">Cada pedido bien cuidado es una pieza más que sale de nuestras manos. ¡Buen trabajo, equipo!</p>
+        </div>
+      </div>
+
+      <div class="site-footer__legal">
+        <p>© 2026 Makka Studio. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/components/toast.js" defer></script>
+  <script src="assets/js/components/product-card.js" defer></script>
+  <script src="assets/js/services/session.js" defer></script>
+  <script src="assets/js/services/auth.js" defer></script>
+  <script src="assets/js/services/compras.js" defer></script>
+  <script src="assets/js/services/solicitudes.js" defer></script>
+  <script src="assets/js/services/demo-data.js" defer></script>
+  <script src="assets/js/components/avatar.js" defer></script>
+  <script src="assets/js/components/admin-shell.js" defer></script>
+  <script src="assets/js/pages/dashboard.js" defer></script>
+</body>
+</html>

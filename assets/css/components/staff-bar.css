@@ -1,0 +1,40 @@
+.staff-bar {
+  background: var(--violet-pale);
+  border-bottom: var(--stroke) solid var(--ink);
+  color: var(--ink);
+}
+
+.staff-bar__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 1rem;
+  padding-block: 0.5rem;
+}
+
+.staff-bar__text {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.cart-btn[hidden] {
+  display: none;
+}
+
+.staff-note {
+  display: grid;
+  gap: 0.7rem;
+  justify-items: start;
+  margin-block: 1rem;
+  padding: 1rem 1.2rem;
+  border: var(--stroke) dashed var(--ink);
+  border-radius: var(--radius-md);
+  background: var(--violet-pale);
+  color: var(--ink);
+}
+
+.staff-note p {
+  margin: 0;
+}

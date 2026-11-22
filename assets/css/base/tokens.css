@@ -1,0 +1,32 @@
+:root {
+  --ink: #111111;
+  --honey: #f8af04;
+  --honey-soft: #fdd470;
+  --honey-pale: #ffeab8;
+  --violet: #7c6bff;
+  --violet-soft: #b4abff;
+  --violet-pale: #e8e4ff;
+  --cream: #fff7e6;
+  --white: #ffffff;
+
+  --text: var(--ink);
+  --text-soft: #4b4637;
+  --star-empty: #d9cba8;
+
+  --font-display: "Fredoka", "Baloo 2", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-xl: 40px;
+  --radius-pill: 999px;
+
+  --stroke: 3px;
+  --pop: 0 5px 0 var(--ink);
+  --pop-lg: 0 8px 0 var(--ink);
+
+  --container: 1200px;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --header-h: 76px;
+}

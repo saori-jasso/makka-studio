@@ -1,0 +1,68 @@
+.qty {
+  min-height: 3.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem;
+  border: var(--stroke) solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  box-shadow: 0 4px 0 var(--ink);
+}
+
+.qty__btn {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0;
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  background: var(--violet-soft);
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.qty__btn:hover {
+  background: var(--violet-pale);
+}
+
+.qty__input {
+  width: 3.4rem;
+  padding: 0.2rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.qty__input::-webkit-outer-spin-button,
+.qty__input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.qty--sm {
+  min-height: 2.9rem;
+  gap: 0.2rem;
+  padding: 0.25rem;
+  box-shadow: 0 3px 0 var(--ink);
+}
+
+.qty--sm .qty__btn {
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.2rem;
+}
+
+.qty--sm .qty__input {
+  width: 2.6rem;
+  font-size: 1.05rem;
+}

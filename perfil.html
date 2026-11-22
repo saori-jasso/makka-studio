@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi perfil | Makka Studio</title>
+  <meta name="description" content="Consulta y actualiza tus datos personales y tu contraseña en Makka Studio.">
+  <meta name="theme-color" content="#f8af04">
+  <link rel="icon" type="image/png" href="assets/img/brand/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/pages/carrito.css">
+  <link rel="stylesheet" href="assets/css/pages/perfil.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__brand" href="index.html" aria-label="Makka Studio, ir al inicio">
+        <img src="assets/img/brand/logo-horizontal.webp" alt="Makka Studio" width="900" height="255">
+      </a>
+
+      <div class="site-header__panel" id="menu-principal">
+        <nav class="main-nav" aria-label="Principal">
+          <ul class="main-nav__list">
+            <li><a class="main-nav__link" href="index.html">Inicio</a></li>
+            <li><a class="main-nav__link" href="catalogo.html">Catálogo</a></li>
+            <li><a class="main-nav__link" href="pedidos-personalizados.html">Pedidos personalizados</a></li>
+          </ul>
+        </nav>
+
+        <div class="site-header__auth">
+          <a class="btn btn--violet btn--sm" href="login.html">
+            <img class="btn__icon" src="assets/img/icons/user.svg" alt="" width="24" height="24">
+            Iniciar sesión
+          </a>
+          <a class="btn btn--honey btn--sm" href="registro.html">
+            <img class="btn__icon" src="assets/img/icons/user-plus.svg" alt="" width="24" height="24">
+            Crear cuenta
+          </a>
+        </div>
+      </div>
+
+      <a class="cart-btn" href="carrito.html" aria-label="Ver mi carrito">
+        <img src="assets/img/icons/cart.svg" alt="" width="24" height="24">
+      </a>
+
+      <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="page-head" aria-labelledby="perfil-titulo">
+      <div class="container page-head__inner">
+        <div class="page-head__copy">
+          <span class="chip chip--pale">Tu cuenta</span>
+          <h1 class="page-head__title" id="perfil-titulo">Mi <span class="page-head__mark">perfil</span></h1>
+          <p class="page-head__text">Consulta y actualiza tus datos cuando lo necesites.</p>
+        </div>
+        <img class="page-head__art" src="assets/img/brand/bee.webp" alt="" width="700" height="598">
+      </div>
+    </section>
+
+    <section class="section profile" aria-label="Mi perfil">
+      <div class="container">
+        <noscript><p class="catalog__noscript">Para ver tu perfil necesitas activar JavaScript en tu navegador.</p></noscript>
+
+        <!-- Sin sesión -->
+        <div class="state" id="estado-sesion" hidden>
+          <img class="state__bee" src="assets/img/brand/bee.webp" alt="" width="700" height="598" loading="lazy">
+          <h2 class="state__title">Inicia sesión para ver tu perfil</h2>
+          <p class="state__text">Aquí podrás ver y cambiar tus datos.</p>
+          <div class="profile__actions">
+            <a class="btn btn--violet" href="login.html?siguiente=perfil.html">Iniciar sesión</a>
+            <a class="btn btn--honey" href="registro.html?siguiente=perfil.html">Crear cuenta</a>
+          </div>
+        </div>
+
+        <div class="profile__layout" id="perfil-contenido" hidden>
+          <!-- Saludo y avatar -->
+          <section class="profile__card profile__hello" aria-label="Tu avatar">
+            <div class="avatar avatar--lg" id="perfil-avatar" aria-hidden="true"></div>
+            <div class="profile__hello-text">
+              <h2 class="profile__name" id="perfil-saludo" tabindex="-1">Hola</h2>
+              <p class="profile__mail" id="perfil-correo"></p>
+              <button class="btn btn--white btn--sm" id="avatar-cambiar" type="button" aria-expanded="false" aria-controls="avatar-panel">Cambiar avatar</button>
+            </div>
+            <div class="avatar-picker" id="avatar-panel" hidden>
+              <p class="avatar-picker__title" id="avatar-titulo">Elige tu avatar</p>
+              <ul class="avatar-picker__list" id="avatar-lista" aria-labelledby="avatar-titulo"></ul>
+              <p class="avatar-picker__credit">Ilustraciones de los avatares: 无糖大列巴 (No Pirates).</p>
+            </div>
+          </section>
+
+          <!-- Mis datos -->
+          <section class="profile__card" aria-labelledby="datos-titulo">
+            <div class="profile__card-head">
+              <h2 class="profile__title" id="datos-titulo">Mis datos</h2>
+              <button class="btn btn--white btn--sm" id="datos-editar" type="button">Editar datos</button>
+            </div>
+
+            <p class="profile__ok" id="datos-ok" role="status" tabindex="-1" hidden>Tus datos se actualizaron correctamente</p>
+
+            <dl class="profile__data" id="datos-lectura">
+              <div><dt>Nombre</dt><dd id="lee-nombre"></dd></div>
+              <div><dt>Apellido</dt><dd id="lee-apellido"></dd></div>
+              <div><dt>Correo electrónico</dt><dd id="lee-correo"></dd></div>
+              <div><dt>Teléfono</dt><dd id="lee-telefono"></dd></div>
+            </dl>
+
+            <form class="profile__form" id="datos-form" novalidate hidden>
+              <p class="profile__warn" id="datos-resumen" role="alert" tabindex="-1" hidden>Revisa el formato de los datos ingresados</p>
+              <div class="profile__grid">
+            <div class="form-group">
+              <label class="form-label" for="pf-nombre">Nombre</label>
+              <div class="field"><input class="field__input" id="pf-nombre" name="nombre" type="text" autocomplete="given-name" maxlength="60" aria-describedby="err-nombre"></div>
+              <p class="form-error" id="err-nombre" hidden></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pf-apellido">Apellido</label>
+              <div class="field"><input class="field__input" id="pf-apellido" name="apellido" type="text" autocomplete="family-name" maxlength="60" aria-describedby="err-apellido"></div>
+              <p class="form-error" id="err-apellido" hidden></p>
+            </div>
+                <div class="form-group">
+                  <label class="form-label" for="pf-correo">Correo electrónico</label>
+                  <div class="field"><input class="field__input" id="pf-correo" name="correo" type="email" autocomplete="email" readonly aria-readonly="true" aria-describedby="ayuda-correo"></div>
+                  <p class="form-hint" id="ayuda-correo">Tu correo identifica tu cuenta y no se puede cambiar. Si necesitas cambiarlo, escríbenos.</p>
+                </div>
+            <div class="form-group">
+              <label class="form-label" for="pf-telefono">Teléfono</label>
+              <div class="field"><input class="field__input" id="pf-telefono" name="telefono" type="tel" inputmode="numeric" autocomplete="tel" maxlength="14" aria-describedby="err-telefono"></div>
+              <p class="form-error" id="err-telefono" hidden></p>
+            </div>
+              </div>
+              <div class="profile__buttons">
+                <button class="btn btn--honey" type="submit">Guardar cambios</button>
+                <button class="btn btn--white" id="datos-cancelar" type="button">Cancelar</button>
+              </div>
+            </form>
+          </section>
+
+          <!-- Seguridad -->
+          <section class="profile__card" aria-labelledby="seguridad-titulo">
+            <h2 class="profile__title" id="seguridad-titulo">Seguridad</h2>
+            <p class="profile__ok" id="clave-ok" role="status" tabindex="-1" hidden>Tu contraseña se actualizó correctamente</p>
+            <form class="profile__form" id="clave-form" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="pf-actual">Contraseña actual</label>
+              <div class="field field--password">
+                <input class="field__input" id="pf-actual" name="actual" type="password" autocomplete="current-password" maxlength="100" aria-describedby="err-actual">
+                <button class="field__toggle" id="ojo-actual" type="button" aria-pressed="false" aria-label="Mostrar contraseña actual"><img src="assets/img/icons/eye.svg" alt="" width="24" height="24"></button>
+              </div>
+              <p class="form-error" id="err-actual" hidden></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pf-nueva">Contraseña nueva</label>
+              <div class="field field--password">
+                <input class="field__input" id="pf-nueva" name="nueva" type="password" autocomplete="new-password" maxlength="100" aria-describedby="err-nueva">
+                <button class="field__toggle" id="ojo-nueva" type="button" aria-pressed="false" aria-label="Mostrar contraseña nueva"><img src="assets/img/icons/eye.svg" alt="" width="24" height="24"></button>
+              </div>
+              <p class="form-error" id="err-nueva" hidden></p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pf-confirmar">Confirmar contraseña nueva</label>
+              <div class="field field--password">
+                <input class="field__input" id="pf-confirmar" name="confirmar" type="password" autocomplete="new-password" maxlength="100" aria-describedby="err-confirmar">
+                <button class="field__toggle" id="ojo-confirmar" type="button" aria-pressed="false" aria-label="Mostrar confirmar contraseña nueva"><img src="assets/img/icons/eye.svg" alt="" width="24" height="24"></button>
+              </div>
+              <p class="form-error" id="err-confirmar" hidden></p>
+            </div>
+              <div class="profile__buttons">
+                <button class="btn btn--honey" type="submit">Cambiar contraseña</button>
+              </div>
+            </form>
+          </section>
+
+          <div class="profile__logout">
+            <button class="btn btn--white" id="perfil-salir" type="button">Cerrar sesión</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div class="site-footer__badge">
+          <img src="assets/img/brand/bee.webp" alt="Makka Studio" width="700" height="598" loading="lazy">
+        </div>
+
+        <div>
+          <h2 class="site-footer__title">Contáctanos</h2>
+          <ul class="contact-list">
+            <li>
+              <a class="contact-list__link" href="tel:+524444482898">
+                <span class="contact-list__icon"><img src="assets/img/icons/phone.svg" alt="" width="24" height="24"></span>
+                <span>
+                  <span class="contact-list__label">Teléfono</span>
+                  <span class="contact-list__value">52 444 448 2898</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contact-list__link" href="mailto:makka.studio3d@gmail.com">
+                <span class="contact-list__icon"><img src="assets/img/icons/mail.svg" alt="" width="24" height="24"></span>
+                <span>
+                  <span class="contact-list__label">Correo</span>
+                  <span class="contact-list__value">makka.studio3d@gmail.com</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contact-list__link" href="https://www.instagram.com/makka.studio3d/" target="_blank" rel="noopener noreferrer">
+                <span class="contact-list__icon"><img src="assets/img/icons/instagram.svg" alt="" width="24" height="24"></span>
+                <span>
+                  <span class="contact-list__label">Instagram</span>
+                  <span class="contact-list__value">@makka.studio3d</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="site-footer__farewell">
+          <p class="site-footer__quote">Y recuerda que nada es tan imposible de crear.</p>
+          <p class="site-footer__thanks">Gracias por confiar en nosotros.</p>
+          <p class="site-footer__sign">- Makka Studio</p>
+        </div>
+      </div>
+
+      <div class="site-footer__legal">
+        <p>© 2026 Makka Studio. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/components/nav.js" defer></script>
+  <script src="assets/js/components/toast.js" defer></script>
+  <script src="assets/js/components/product-card.js" defer></script>
+  <script src="assets/js/services/session.js" defer></script>
+  <script src="assets/js/components/avatar.js" defer></script>
+  <script src="assets/js/components/user-menu.js" defer></script>
+  <script src="assets/js/components/role-guard.js" defer></script>
+  <script src="assets/js/services/cart.js" defer></script>
+  <script src="assets/js/services/auth.js" defer></script>
+  <script src="assets/js/pages/perfil.js" defer></script>
+</body>
+</html>

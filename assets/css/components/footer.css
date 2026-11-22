@@ -1,0 +1,140 @@
+.site-footer {
+  position: relative;
+  margin-top: 2rem;
+  padding-top: 3.5rem;
+  background: var(--honey);
+  color: var(--ink);
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% - 1px);
+  height: 64px;
+  background: url("../../img/patterns/honey-wave.svg") repeat-x bottom left / 480px 64px;
+  pointer-events: none;
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: auto 1fr 1.2fr;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+.site-footer__badge {
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 112px;
+  border: var(--stroke) solid var(--ink);
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: var(--pop);
+}
+
+.site-footer__badge img {
+  width: 70%;
+  height: auto;
+}
+
+.site-footer__title {
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+}
+
+.contact-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.contact-list__link {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+
+.contact-list__icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--white);
+  transition: transform 0.15s ease;
+}
+
+.contact-list__icon img {
+  width: 22px;
+  height: 22px;
+}
+
+.contact-list__link:hover .contact-list__icon {
+  transform: rotate(-8deg) scale(1.06);
+}
+
+.contact-list__label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  opacity: 0.75;
+}
+
+.contact-list__value {
+  display: block;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.site-footer__farewell {
+  padding: 1.25rem 1.5rem;
+  border: var(--stroke) solid var(--ink);
+  border-radius: var(--radius-lg);
+  background: var(--cream);
+  box-shadow: var(--pop);
+}
+
+.site-footer__farewell p {
+  color: var(--ink);
+}
+
+.site-footer__quote {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.site-footer__thanks {
+  margin-top: 0.5rem;
+}
+
+.site-footer__sign {
+  margin-top: 0.35rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.site-footer__legal {
+  margin-top: 2.5rem;
+  padding-block: 1.25rem;
+  border-top: 2px dashed rgb(17 17 17 / 0.4);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.site-footer__legal p {
+  color: var(--ink);
+}
+
+@media (max-width: 899px) {
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+  }
+}

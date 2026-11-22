@@ -1,0 +1,226 @@
+/* Login y Crear cuenta */
+
+.site-header--simple .site-header__inner {
+  justify-content: space-between;
+}
+
+.auth {
+  display: grid;
+  place-items: start center;
+  min-height: calc(100vh - var(--header-h));
+  padding: clamp(5.5rem, 12vw, 7.5rem) var(--gutter) clamp(2.5rem, 7vw, 4.5rem);
+  /* Mismo fondo de cuadros que el inicio. Para cambiar el color, edita el rgb(...) de ambas líneas; el tamaño del cuadro es background-size. */
+  background-color: var(--cream);
+  background-image: linear-gradient(90deg, rgb(248 175 4 / 0.14) 50%, transparent 50%),
+    linear-gradient(rgb(248 175 4 / 0.14) 50%, transparent 50%);
+  background-size: 56px 56px;
+}
+
+/* Sin hueco entre el contenido y la onda del pie de página */
+.page-auth .site-footer {
+  margin-top: 0;
+}
+
+.auth-card {
+  position: relative;
+  display: grid;
+  gap: 1.35rem;
+  width: min(100%, 28rem);
+  padding: 6.2rem clamp(1.2rem, 4vw, 2rem) clamp(1.6rem, 4vw, 2.1rem);
+  border: var(--stroke) solid var(--ink);
+  border-radius: var(--radius-xl);
+  background: var(--white);
+  box-shadow: var(--pop-lg);
+}
+
+.auth-card--wide {
+  width: min(100%, 44rem);
+}
+
+.auth-bee {
+  position: absolute;
+  top: -5.5rem;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 11rem;
+  height: 11rem;
+  border: var(--stroke) solid var(--ink);
+  border-radius: 50%;
+  background: var(--violet-pale);
+  box-shadow: 0 5px 0 var(--ink);
+  transform: translateX(-50%);
+}
+
+.auth-bee__img {
+  width: 7.6rem;
+  height: auto;
+  animation: auth-bee-bob 3.2s ease-in-out infinite;
+}
+
+@keyframes auth-bee-bob {
+  0%,
+  100% { transform: translateY(2px) rotate(-2deg); }
+  50% { transform: translateY(-5px) rotate(2deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-bee__img {
+    animation: none;
+  }
+}
+
+.auth-card__head {
+  display: grid;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.auth-card__title {
+  font-size: clamp(1.7rem, 4.5vw, 2.1rem);
+}
+
+.auth-card__text {
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.auth-form {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.auth-grid {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.auth-alert,
+.auth-notice {
+  padding: 0.55rem 1rem;
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.auth-alert {
+  background: var(--honey-pale);
+}
+
+.auth-notice {
+  background: var(--violet-pale);
+}
+
+.auth-alert:focus {
+  outline: 3px solid var(--violet);
+  outline-offset: 3px;
+}
+
+.btn--block {
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.auth-links {
+  display: grid;
+  gap: 0.6rem;
+  justify-items: center;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.auth-links a {
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.auth-links a:hover {
+  background: var(--honey-pale);
+}
+
+.auth-demo {
+  display: grid;
+  justify-items: center;
+  gap: 0.7rem;
+  padding: 0.9rem 1rem 1.1rem;
+  border: 2.5px dashed var(--ink);
+  border-radius: var(--radius-md);
+  background: var(--violet-pale);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.auth-demo[hidden] {
+  display: none;
+}
+
+.auth-link-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.auth-link-btn:hover {
+  background: var(--honey-pale);
+}
+
+.auth-link-btn:focus-visible {
+  outline: 3px solid var(--violet);
+  outline-offset: 3px;
+}
+
+.auth-done {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.auth-done__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem 1rem;
+  padding-bottom: 6px;
+}
+
+@media (min-width: 600px) {
+  .auth-grid--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .auth-grid__full {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 479px) {
+  .auth-bee {
+    width: 9.5rem;
+    height: 9.5rem;
+    top: -4.75rem;
+  }
+
+  .auth-bee__img {
+    width: 6.4rem;
+  }
+
+  .auth-card {
+    padding-top: 5.4rem;
+  }
+
+  .auth-done__actions .btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,66 @@
+.color-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  padding: 0.35rem;
+}
+
+.color-pick {
+  position: relative;
+  display: block;
+  width: 2.7rem;
+  height: 2.7rem;
+}
+
+.color-pick input {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.color-pick__dot {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  background: var(--swatch, var(--white));
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.color-pick:hover .color-pick__dot {
+  transform: scale(1.1);
+}
+
+.color-pick input:checked + .color-pick__dot {
+  box-shadow: 0 0 0 3px var(--cream), 0 0 0 6px var(--ink);
+}
+
+.color-pick input:focus-visible + .color-pick__dot {
+  outline: 3px solid var(--violet);
+  outline-offset: 5px;
+}
+
+.color-pick input:disabled {
+  cursor: not-allowed;
+}
+
+.color-pick input:disabled + .color-pick__dot {
+  opacity: 0.45;
+}
+
+.color-pick input:disabled + .color-pick__dot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -10%;
+  width: 120%;
+  height: 3px;
+  background: var(--ink);
+  transform: rotate(-45deg);
+}

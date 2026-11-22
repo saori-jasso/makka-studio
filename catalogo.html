@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catálogo | Makka Studio</title>
+  <meta name="description" content="Explora el catálogo de Makka Studio: llaveros, clickers, aretes, separadores, figuras, cuadros en relieve, artículos de temporada y decoración impresos en 3D en San Luis Potosí.">
+  <meta name="theme-color" content="#f8af04">
+  <link rel="icon" type="image/png" href="assets/img/brand/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/pages/catalogo.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__brand" href="index.html" aria-label="Makka Studio, ir al inicio">
+        <img src="assets/img/brand/logo-horizontal.webp" alt="Makka Studio" width="900" height="255">
+      </a>
+
+      <div class="site-header__panel" id="menu-principal">
+        <nav class="main-nav" aria-label="Principal">
+          <ul class="main-nav__list">
+            <li><a class="main-nav__link" href="index.html">Inicio</a></li>
+            <li><a class="main-nav__link" href="catalogo.html" aria-current="page">Catálogo</a></li>
+            <li><a class="main-nav__link" href="pedidos-personalizados.html">Pedidos personalizados</a></li>
+          </ul>
+        </nav>
+
+        <div class="site-header__auth">
+          <a class="btn btn--violet btn--sm" href="login.html">
+            <img class="btn__icon" src="assets/img/icons/user.svg" alt="" width="24" height="24">
+            Iniciar sesión
+          </a>
+          <a class="btn btn--honey btn--sm" href="registro.html">
+            <img class="btn__icon" src="assets/img/icons/user-plus.svg" alt="" width="24" height="24">
+            Crear cuenta
+          </a>
+        </div>
+      </div>
+
+      <a class="cart-btn" href="carrito.html" aria-label="Ver mi carrito">
+        <img src="assets/img/icons/cart.svg" alt="" width="24" height="24">
+      </a>
+
+      <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="page-head" aria-labelledby="catalogo-titulo">
+      <div class="container page-head__inner">
+        <div class="page-head__copy">
+          <span class="chip chip--pale">Listos para llevar</span>
+          <h1 class="page-head__title" id="catalogo-titulo">Nuestro <span class="page-head__mark">catálogo</span></h1>
+          <p class="page-head__text">Elige una categoría, busca tu pieza favorita o filtra por precio y material. Si no encuentras lo que imaginas, lo imprimimos a tu medida.</p>
+        </div>
+        <img class="page-head__art" src="assets/img/brand/bee.webp" alt="" width="700" height="598">
+      </div>
+    </section>
+
+    <section class="section catalog" aria-label="Productos">
+      <div class="container">
+        <nav class="catalog-cats" aria-label="Categorías">
+          <ul class="catalog-cats__list">
+            <li>
+              <button class="category-circle" type="button" data-categoria="todos" aria-pressed="false">
+                <span class="category-circle__icon"><img src="assets/img/icons/cat-todos.svg" alt="" width="64" height="64"></span>
+                <span class="category-circle__label">Todos</span>
+              </button>
+            </li>
+            <li>
+              <button class="category-circle" type="button" data-categoria="llaveros" aria-pressed="false">
+                <span class="category-circle__icon"><img src="assets/img/icons/cat-llaveros.svg" alt="" width="64" height="64"></span>
+                <span class="category-circle__label">Llaveros</span>
+              </button>
+            </li>
+            <li>
+              <button class="category-circle" type="button" data-categoria="clickers" aria-pressed="false">
+                <span class="category-circle__icon"><img src="assets/img/icons/cat-clickers.svg" alt="" width="64" height="64"></span>
+                <span class="category-circle__label">Clickers</span>
+              </button>
+            </li>
+            <li>
+              <button class="category-circle" type="button" data-categoria="aretes" aria-pressed="false">
+                <span class="category-circle__icon"><img src="assets/img/icons/cat-aretes.svg" alt="" width="64" height="64"></span>
+                <span class="category-circle__label">Aretes</span>
+              </button>
+            </li>
+            <li>
+              <button class="category-circle" type="button" data-categoria="separadores" aria-pressed="false">
+                <span class="category-circle__icon"><img src="assets/img/icons/cat-separadores.svg" alt="" width="64" height="64"></span>
+                <span class="category-circle__label">Separadores</span>
+              </button>
+            </li>
+            <li>
+              <button class="category-circle" type="button" data-categoria="figuras" aria-pressed="false">
+                <span class="category-circle__icon"><img src="assets/img/icons/cat-figuras.svg" alt="" width="64" height="64"></span>
+                <span class="category-circle__label">Figuras</span>
+              </button>
+            </li>
+            <li>
+              <button class="category-circle" type="button" data-categoria="cuadros-en-relieve" aria-pressed="false">
+                <span class="category-circle__icon"><img src="assets/img/icons/cat-cuadros.svg" alt="" width="64" height="64"></span>
+                <span class="category-circle__label">Cuadros en relieve</span>
+              </button>
+            </li>
+            <li>
+              <button class="category-circle" type="button" data-categoria="articulos-de-temporada" aria-pressed="false">
+                <span class="category-circle__icon"><img src="assets/img/icons/cat-temporada.svg" alt="" width="64" height="64"></span>
+                <span class="category-circle__label">Artículos de temporada</span>
+              </button>
+            </li>
+            <li>
+              <button class="category-circle" type="button" data-categoria="decoracion" aria-pressed="false">
+                <span class="category-circle__icon"><img src="assets/img/icons/cat-decoracion.svg" alt="" width="64" height="64"></span>
+                <span class="category-circle__label">Decoración</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+
+        <form class="catalog-tools" id="catalogo-filtros" role="search" aria-label="Buscar y filtrar productos" novalidate>
+          <div class="catalog-tools__top">
+            <div class="catalog-tools__search">
+              <label class="catalog-tools__label sr-only" for="busqueda">Buscar productos</label>
+              <div class="field field--search">
+                <img class="field__icon" src="assets/img/icons/search.svg" alt="" width="24" height="24">
+                <input class="field__input" id="busqueda" name="q" type="search" placeholder="Buscar productos..." maxlength="80" autocomplete="off">
+                <button class="field__clear" id="busqueda-borrar" type="button" aria-label="Borrar búsqueda" hidden>
+                  <img src="assets/img/icons/close.svg" alt="" width="16" height="16">
+                </button>
+              </div>
+            </div>
+
+            <div class="catalog-tools__sort">
+              <label class="catalog-tools__label" for="orden">Ordenar por</label>
+              <select class="field__select" id="orden" name="orden">
+                <option value="destacados">Destacados</option>
+                <option value="precio-asc">Precio: menor a mayor</option>
+                <option value="precio-desc">Precio: mayor a menor</option>
+                <option value="calificacion">Mejor calificados</option>
+                <option value="nombre">Nombre (A-Z)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="catalog-tools__bottom">
+            <fieldset class="catalog-tools__group">
+              <legend class="catalog-tools__legend">Precio</legend>
+              <div class="price-range">
+                <label class="sr-only" for="precio-min">Precio mínimo en pesos</label>
+                <input class="field__input field__input--number" id="precio-min" name="min" type="number" inputmode="numeric" min="0" step="1" placeholder="0">
+                <span class="price-range__sep" aria-hidden="true">a</span>
+                <label class="sr-only" for="precio-max">Precio máximo en pesos</label>
+                <input class="field__input field__input--number" id="precio-max" name="max" type="number" inputmode="numeric" min="0" step="1" placeholder="500">
+                <span class="price-range__unit">MXN</span>
+                <button class="btn btn--violet btn--sm" type="submit">Aplicar</button>
+              </div>
+              <p class="catalog-tools__hint" id="precio-resumen" aria-live="polite">Todos los precios ($0 a $500 MXN)</p>
+              <p class="catalog-tools__error" id="precio-error" role="alert" hidden></p>
+            </fieldset>
+
+            <fieldset class="catalog-tools__group">
+              <legend class="catalog-tools__legend">Material</legend>
+              <div class="toggle-group">
+                <label class="toggle"><input type="radio" name="material" value="" checked><span>Todos</span></label>
+                <label class="toggle"><input type="radio" name="material" value="PLA"><span>PLA</span></label>
+                <label class="toggle"><input type="radio" name="material" value="PETG"><span>PETG</span></label>
+              </div>
+            </fieldset>
+          </div>
+        </form>
+
+        <div class="catalog__meta">
+          <p class="catalog__count" id="catalogo-contador" role="status" aria-live="polite"></p>
+          <button class="link-btn" id="limpiar-filtros" type="button" hidden>Limpiar filtros</button>
+        </div>
+
+        <noscript><p class="catalog__noscript">Para ver el catálogo necesitas activar JavaScript en tu navegador.</p></noscript>
+
+        <ul class="catalog__grid" id="catalogo-grid" aria-busy="true"></ul>
+
+        <div class="state" id="estado-vacio" hidden>
+          <img class="state__bee" src="assets/img/brand/bee.webp" alt="" width="700" height="598" loading="lazy">
+          <h2 class="state__title">Aquí todavía no hay nada</h2>
+          <p class="state__text">No encontramos productos con esos filtros. Prueba con otra categoría o palabra.</p>
+          <button class="btn btn--honey" id="vacio-limpiar" type="button">Limpiar filtros</button>
+        </div>
+
+        <div class="state" id="estado-error" role="alert" hidden>
+          <img class="state__bee" src="assets/img/brand/bee.webp" alt="" width="700" height="598" loading="lazy">
+          <h2 class="state__title">¡Ay, se nos cayó el panal!</h2>
+          <p class="state__text">No pudimos cargar el catálogo. Intenta de nuevo en unos minutos.</p>
+          <button class="btn btn--violet" id="error-reintentar" type="button">Reintentar</button>
+        </div>
+
+        <div class="catalog__more" id="catalogo-mas" hidden>
+          <button class="btn btn--violet btn--lg" id="cargar-mas" type="button">Cargar más productos</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div class="site-footer__badge">
+          <img src="assets/img/brand/bee.webp" alt="Makka Studio" width="700" height="598" loading="lazy">
+        </div>
+
+        <div>
+          <h2 class="site-footer__title">Contáctanos</h2>
+          <ul class="contact-list">
+            <li>
+              <a class="contact-list__link" href="tel:+524444482898">
+                <span class="contact-list__icon"><img src="assets/img/icons/phone.svg" alt="" width="24" height="24"></span>
+                <span>
+                  <span class="contact-list__label">Teléfono</span>
+                  <span class="contact-list__value">52 444 448 2898</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contact-list__link" href="mailto:makka.studio3d@gmail.com">
+                <span class="contact-list__icon"><img src="assets/img/icons/mail.svg" alt="" width="24" height="24"></span>
+                <span>
+                  <span class="contact-list__label">Correo</span>
+                  <span class="contact-list__value">makka.studio3d@gmail.com</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contact-list__link" href="https://www.instagram.com/makka.studio3d/" target="_blank" rel="noopener noreferrer">
+                <span class="contact-list__icon"><img src="assets/img/icons/instagram.svg" alt="" width="24" height="24"></span>
+                <span>
+                  <span class="contact-list__label">Instagram</span>
+                  <span class="contact-list__value">@makka.studio3d</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="site-footer__farewell">
+          <p class="site-footer__quote">Y recuerda que nada es tan imposible de crear.</p>
+          <p class="site-footer__thanks">Gracias por confiar en nosotros.</p>
+          <p class="site-footer__sign">- Makka Studio</p>
+        </div>
+      </div>
+
+      <div class="site-footer__legal">
+        <p>© 2026 Makka Studio. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/components/nav.js" defer></script>
+  <script src="assets/js/services/session.js" defer></script>
+  <script src="assets/js/components/avatar.js" defer></script>
+  <script src="assets/js/components/user-menu.js" defer></script>
+  <script src="assets/js/components/role-guard.js" defer></script>
+  <script src="assets/js/components/product-card.js" defer></script>
+  <script src="assets/js/services/cart.js" defer></script>
+  <script src="assets/js/data/productos.js" defer></script>
+  <script src="assets/js/services/api.js" defer></script>
+  <script src="assets/js/pages/catalogo.js" defer></script>
+</body>
+</html>

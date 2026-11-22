@@ -1,0 +1,362 @@
+.pedido {
+  padding-block: clamp(1.5rem, 4vw, 2.5rem) clamp(3rem, 7vw, 5rem);
+}
+
+.pedido__layout {
+  display: grid;
+  gap: clamp(1.5rem, 3.5vw, 2.5rem);
+  align-items: start;
+}
+
+.pedido__main {
+  display: grid;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+.pedido__main form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* En celular, "¿Cómo funciona?" va antes del formulario */
+.pedido__aside {
+  order: -1;
+}
+
+/* ---------- Avisos ---------- */
+
+.form-note {
+  padding: 0.5rem 1rem;
+  border: 2.5px dashed var(--ink);
+  border-radius: var(--radius-md);
+  background: var(--violet-pale);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.form-summary {
+  padding: 0.7rem 1.1rem;
+  border: var(--stroke) solid var(--ink);
+  border-radius: var(--radius-md);
+  background: var(--honey-pale);
+  box-shadow: var(--pop);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.form-summary:focus {
+  outline: 3px solid var(--violet);
+  outline-offset: 3px;
+}
+
+/* ---------- Tarjetas del formulario ---------- */
+
+.form-card {
+  display: grid;
+  gap: 1.5rem;
+  padding: clamp(1.1rem, 3vw, 1.75rem);
+  border: var(--stroke) solid var(--ink);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--pop);
+}
+
+.form-card__title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: clamp(1.3rem, 3vw, 1.65rem);
+}
+
+.form-card__num {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  background: var(--honey);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.form-row {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.form-hint--count {
+  text-align: right;
+}
+
+.toggle--other {
+  justify-self: start;
+}
+
+.toggle-group .toggle span {
+  line-height: 1.35;
+}
+
+/* ---------- Autocompletar de producto ---------- */
+
+.combo {
+  position: relative;
+}
+
+.combo__list {
+  position: absolute;
+  inset: calc(100% + 0.5rem) 0 auto;
+  z-index: 5;
+  display: grid;
+  max-height: 17rem;
+  padding: 0.4rem;
+  overflow-y: auto;
+  border: var(--stroke) solid var(--ink);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: var(--pop);
+}
+
+.combo__option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.combo__option.is-active,
+.combo__option:hover {
+  background: var(--honey-pale);
+}
+
+.combo__option img {
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  object-fit: contain;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--violet-pale);
+  padding: 2px;
+}
+
+.combo__name {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.combo__cat {
+  display: block;
+  color: var(--text-soft);
+  font-size: 0.82rem;
+}
+
+.combo__empty {
+  padding: 0.7rem 0.8rem;
+  color: var(--text-soft);
+  font-size: 0.92rem;
+}
+
+.picked {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  padding: 0.6rem 0.8rem;
+  border: var(--stroke) solid var(--ink);
+  border-radius: var(--radius-md);
+  background: var(--violet-pale);
+}
+
+.picked__img {
+  flex: none;
+  width: 4rem;
+  height: 4rem;
+  object-fit: contain;
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  padding: 3px;
+}
+
+.picked__body {
+  flex: 1 1 10rem;
+  min-width: 0;
+}
+
+.picked__name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.picked__meta {
+  color: var(--text-soft);
+  font-size: 0.88rem;
+}
+
+/* ---------- Zonas de carga ---------- */
+
+.form-reminder {
+  padding: 0.55rem 0.95rem;
+  border: 2.5px dashed var(--ink);
+  border-radius: var(--radius-sm);
+  background: var(--honey-pale);
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+
+/* ---------- Inicio de sesión requerido y acciones ---------- */
+
+.form-gate {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.25rem 1.4rem;
+  border: var(--stroke) solid var(--ink);
+  border-radius: var(--radius-lg);
+  background: var(--honey-pale);
+  box-shadow: var(--pop);
+}
+
+.form-gate:focus {
+  outline: 3px solid var(--violet);
+  outline-offset: 3px;
+}
+
+.form-gate__title {
+  font-size: 1.35rem;
+}
+
+.form-gate__actions,
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 1.1rem;
+}
+
+.form-actions {
+  padding-bottom: 6px;
+}
+
+/* ---------- ¿Cómo funciona? ---------- */
+
+.how {
+  display: grid;
+  gap: 1rem;
+  padding: 1.3rem 1.4rem;
+  border: var(--stroke) dashed var(--violet);
+  border-radius: var(--radius-lg);
+  background: var(--violet-pale);
+}
+
+.how__title {
+  font-size: 1.35rem;
+}
+
+.how__list {
+  display: grid;
+  gap: 0.8rem;
+  counter-reset: paso;
+}
+
+.how__list li {
+  position: relative;
+  min-height: 1.9rem;
+  padding-left: 2.6rem;
+  font-weight: 500;
+  line-height: 1.45;
+  counter-increment: paso;
+}
+
+.how__list li::before {
+  content: counter(paso);
+  position: absolute;
+  top: -0.05rem;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  background: var(--honey);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+/* ---------- Éxito, cargando ---------- */
+
+.state__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.state__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem 1.1rem;
+  padding-bottom: 6px;
+}
+
+.pedido-skeleton {
+  height: 38rem;
+  border: var(--stroke) solid var(--ink);
+  border-radius: var(--radius-lg);
+}
+
+.pedido-skeleton--side {
+  height: 13rem;
+}
+
+.catalog__noscript {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  border: var(--stroke) solid var(--ink);
+  border-radius: var(--radius-md);
+  background: var(--honey-pale);
+}
+
+@media (min-width: 640px) {
+  .form-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 960px) {
+  .pedido__layout {
+    grid-template-columns: minmax(0, 1fr) minmax(17rem, 21rem);
+  }
+
+  .pedido__aside {
+    order: 0;
+    position: sticky;
+    top: calc(var(--header-h) + 1.25rem);
+  }
+}
+
+@media (max-width: 479px) {
+  .form-actions .btn,
+  .form-gate__actions .btn,
+  .state__actions .btn {
+    width: 100%;
+  }
+
+  .form-actions .btn {
+    white-space: normal;
+  }
+}

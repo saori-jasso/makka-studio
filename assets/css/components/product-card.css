@@ -1,0 +1,325 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  border: var(--stroke) solid var(--ink);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--pop);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 0 var(--ink);
+}
+
+.product-card__link {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 0.85rem 0.85rem 1.1rem;
+  text-decoration: none;
+}
+
+.product-card__media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  background: var(--violet-pale);
+}
+
+.product-card__media::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 2px dashed rgb(17 17 17 / 0.28);
+  border-radius: calc(var(--radius-md) - 6px);
+}
+
+.product-card__media--honey {
+  background: var(--honey-soft);
+}
+
+.product-card__media img {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 74%;
+  max-height: 74%;
+  filter: drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff)
+    drop-shadow(0 -3px 0 #fff) drop-shadow(0 8px 8px rgb(17 17 17 / 0.22));
+  transition: transform 0.25s ease;
+}
+
+.product-card:hover .product-card__media img {
+  transform: scale(1.06) rotate(-3deg);
+}
+
+.product-card__body {
+  flex: 1;
+  align-content: start;
+  display: grid;
+  gap: 0.3rem;
+  padding-inline: 0.35rem;
+  text-align: center;
+}
+
+.product-card__name {
+  font-size: 1.15rem;
+}
+
+.product-card__tag {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  z-index: 1;
+  padding: 0.1rem 0.65rem;
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: var(--violet-soft);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.product-card__desc {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.swatches {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.2rem;
+}
+
+.swatch {
+  width: 1.05rem;
+  height: 1.05rem;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--swatch, var(--white));
+}
+
+.product-card__price {
+  margin-top: 0.15rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.product-card__price small {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-soft);
+}
+
+/* ---------- Tarjeta con fotos deslizables por color ---------- */
+
+.product-card--stretch {
+  position: relative;
+  gap: 0.9rem;
+  padding: 0.85rem 0.85rem 1.1rem;
+}
+
+/* El enlace del nombre cubre toda la tarjeta; fotos, flechas y puntos de color quedan por encima */
+.product-card__link--stretch {
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-card__link--stretch::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: var(--radius-lg);
+}
+
+.product-card__link--stretch:focus-visible::after {
+  outline: 3px solid var(--violet);
+  outline-offset: 3px;
+}
+
+.product-card--stretch .product-card__media {
+  z-index: 2;
+  overflow: hidden;
+}
+
+.card-slides {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  list-style: none;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  border-radius: inherit;
+}
+
+.card-slides::-webkit-scrollbar {
+  display: none;
+}
+
+.card-slides--many {
+  cursor: grab;
+}
+
+.card-slides.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+.card-slide {
+  position: relative;
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.card-slide__link {
+  position: absolute;
+  inset: 0;
+}
+
+/* La foto ocupa el 74% de la tarjeta y se ajusta completa, sea alta, ancha o cuadrada */
+.card-slide img {
+  position: absolute;
+  inset: 13%;
+  width: 74%;
+  height: 74%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.card-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  padding: 0;
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--ink);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.card-arrow svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.card-arrow--prev {
+  left: 0.5rem;
+}
+
+.card-arrow--next {
+  right: 0.5rem;
+}
+
+.card-arrow:hover {
+  background: var(--honey-soft);
+}
+
+.product-card:hover .card-arrow,
+.product-card:focus-within .card-arrow {
+  opacity: 1;
+}
+
+/* En pantallas táctiles no hay "hover": las flechas se ven siempre, pero discretas */
+@media (hover: none) {
+  .card-arrow {
+    width: 1.8rem;
+    height: 1.8rem;
+    opacity: 0.9;
+  }
+}
+
+.product-card__color {
+  position: absolute;
+  bottom: 0.7rem;
+  left: 50%;
+  z-index: 2;
+  max-width: 80%;
+  padding: 0.1rem 0.7rem;
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.4;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.product-card__color[hidden] {
+  display: none;
+}
+
+.swatches {
+  position: relative;
+  z-index: 3;
+  flex-wrap: wrap;
+}
+
+.swatch--btn {
+  position: relative;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Zona de toque más grande que el punto */
+.swatch--btn::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+}
+
+.swatch--btn:hover {
+  transform: scale(1.15);
+}
+
+.swatch--btn[aria-pressed="true"] {
+  box-shadow: 0 0 0 2px var(--white), 0 0 0 4.5px var(--ink);
+}
+
+.swatch--btn:focus-visible {
+  outline: 3px solid var(--violet);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-arrow,
+  .swatch--btn {
+    transition: none;
+  }
+}

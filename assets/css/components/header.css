@@ -1,0 +1,223 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--cream);
+  border-bottom: var(--stroke) solid var(--ink);
+}
+
+.site-header::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 5px;
+  border-bottom: 2px dashed rgb(17 17 17 / 0.28);
+  pointer-events: none;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: var(--header-h);
+}
+
+.site-header__brand {
+  display: block;
+  flex: none;
+}
+
+.site-header__brand img {
+  width: auto;
+  height: 46px;
+}
+
+.site-header__panel {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.main-nav {
+  margin-inline: auto;
+}
+
+.main-nav__list {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.main-nav__link {
+  display: block;
+  padding: 0.45rem 1rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.main-nav__link:hover {
+  background: var(--honey-pale);
+  transform: translateY(-1px);
+}
+
+.main-nav__link[aria-current="page"] {
+  background: var(--honey);
+  border-color: var(--ink);
+  box-shadow: 0 3px 0 var(--ink);
+}
+
+.site-header__auth {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cart-btn {
+  position: relative;
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: var(--stroke) solid var(--ink);
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 4px 0 var(--ink);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.cart-btn[aria-current="page"] {
+  background: var(--honey);
+}
+
+.cart-btn:hover {
+  background: var(--honey-pale);
+  transform: translateY(-2px) rotate(-6deg);
+}
+
+.cart-btn img {
+  width: 24px;
+  height: 24px;
+}
+
+.cart-btn__count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding-inline: 4px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: var(--violet-soft);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.site-header__toggle {
+  display: none;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: var(--stroke) solid var(--ink);
+  border-radius: 50%;
+  background: var(--honey);
+  box-shadow: 0 4px 0 var(--ink);
+}
+
+.site-header__toggle span {
+  display: block;
+  width: 20px;
+  height: 3px;
+  margin: 4px auto;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.site-header__toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.site-header__toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.site-header__toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 899px) {
+  .site-header__brand {
+    margin-right: auto;
+  }
+
+  .site-header__brand img {
+    height: 40px;
+  }
+
+  .site-header__toggle {
+    display: block;
+  }
+
+  .cart-btn {
+    order: 2;
+  }
+
+  .site-header__toggle {
+    order: 3;
+  }
+
+  .site-header__panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+    padding: 1.25rem var(--gutter) 1.75rem;
+    background: var(--cream);
+    border-bottom: var(--stroke) solid var(--ink);
+  }
+
+  .site-header__panel.is-open {
+    display: flex;
+  }
+
+  .main-nav {
+    margin: 0;
+  }
+
+  .main-nav__list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.4rem;
+  }
+
+  .main-nav__link {
+    padding: 0.7rem 1rem;
+    font-size: 1.15rem;
+  }
+
+  .site-header__auth {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .site-header__auth .btn {
+    width: 100%;
+  }
+}

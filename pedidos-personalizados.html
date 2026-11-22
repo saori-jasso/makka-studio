@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pedidos personalizados | Makka Studio</title>
+  <meta name="description" content="Pide una pieza a la medida: cuéntale a Makka Studio tu idea y la convertimos en una pieza única impresa en 3D.">
+  <meta name="theme-color" content="#f8af04">
+  <link rel="icon" type="image/png" href="assets/img/brand/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/pages/pedidos.css">
+</head>
+<body data-buyers-only>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__brand" href="index.html" aria-label="Makka Studio, ir al inicio">
+        <img src="assets/img/brand/logo-horizontal.webp" alt="Makka Studio" width="900" height="255">
+      </a>
+
+      <div class="site-header__panel" id="menu-principal">
+        <nav class="main-nav" aria-label="Principal">
+          <ul class="main-nav__list">
+            <li><a class="main-nav__link" href="index.html">Inicio</a></li>
+            <li><a class="main-nav__link" href="catalogo.html">Catálogo</a></li>
+            <li><a class="main-nav__link" href="pedidos-personalizados.html" aria-current="page">Pedidos personalizados</a></li>
+          </ul>
+        </nav>
+
+        <div class="site-header__auth">
+          <a class="btn btn--violet btn--sm" href="login.html">
+            <img class="btn__icon" src="assets/img/icons/user.svg" alt="" width="24" height="24">
+            Iniciar sesión
+          </a>
+          <a class="btn btn--honey btn--sm" href="registro.html">
+            <img class="btn__icon" src="assets/img/icons/user-plus.svg" alt="" width="24" height="24">
+            Crear cuenta
+          </a>
+        </div>
+      </div>
+
+      <a class="cart-btn" href="carrito.html" aria-label="Ver mi carrito">
+        <img src="assets/img/icons/cart.svg" alt="" width="24" height="24">
+      </a>
+
+      <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="page-head" aria-labelledby="pedido-titulo">
+      <div class="container page-head__inner">
+        <div class="page-head__copy">
+          <span class="chip chip--pale">A tu medida</span>
+          <h1 class="page-head__title" id="pedido-titulo">Pedidos <span class="page-head__mark">personalizados</span></h1>
+          <p class="page-head__text">Cuéntanos tu idea y la convertimos en una pieza única.</p>
+        </div>
+        <img class="page-head__art" src="assets/img/brand/bee.webp" alt="" width="700" height="598">
+      </div>
+    </section>
+
+    <section class="section pedido" aria-label="Formulario de pedido personalizado">
+      <div class="container">
+        <noscript><p class="catalog__noscript">Para enviar tu solicitud necesitas activar JavaScript en tu navegador.</p></noscript>
+
+        <div class="pedido__layout" id="pedido-cargando" aria-hidden="true">
+          <div class="pedido-skeleton skeleton"></div>
+          <div class="pedido-skeleton pedido-skeleton--side skeleton"></div>
+        </div>
+
+        <div class="pedido__layout" id="pedido-contenido" hidden>
+          <div class="pedido__main">
+            <p class="form-note" id="pedido-nota-sesion" hidden>Puedes ir llenando el formulario. Para enviarlo necesitas iniciar sesión.</p>
+
+            <form id="pedido-form" novalidate>
+              <div class="form-summary" id="pedido-resumen-error" role="alert" tabindex="-1" hidden>Completa los campos obligatorios</div>
+
+              <section class="form-card" aria-labelledby="tit-idea">
+                <h2 class="form-card__title" id="tit-idea"><span class="form-card__num" aria-hidden="true">1</span>Tu idea</h2>
+
+                <fieldset class="form-group" id="grupo-tipoPedido">
+                  <legend class="form-label">¿Qué quieres pedir?<span class="form-label__req" aria-hidden="true">*</span></legend>
+                  <div class="toggle-group">
+                    <label class="toggle"><input type="radio" name="tipoPedido" value="modificacion" required><span>Una modificación de un producto del catálogo</span></label>
+                    <label class="toggle"><input type="radio" name="tipoPedido" value="nuevo" required><span>Un diseño nuevo</span></label>
+                  </div>
+                  <p class="form-error" id="err-tipoPedido" hidden></p>
+                </fieldset>
+
+                <div class="form-group" id="grupo-producto" hidden>
+                  <label class="form-label" for="pp-producto">Producto del catálogo que quieres modificar<span class="form-label__req" aria-hidden="true">*</span></label>
+                  <div class="combo" id="combo">
+                    <div class="field field--search">
+                      <img class="field__icon" src="assets/img/icons/search.svg" alt="" width="24" height="24">
+                      <input class="field__input" id="pp-producto" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="pp-lista" aria-describedby="ayuda-producto err-producto" placeholder="Escribe el nombre, por ejemplo «Llavero Dino»" autocomplete="off" maxlength="80">
+                    </div>
+                    <ul class="combo__list" id="pp-lista" role="listbox" aria-label="Productos del catálogo" hidden></ul>
+                  </div>
+                  <div class="picked" id="pp-producto-elegido" hidden>
+                    <img class="picked__img" id="pp-producto-img" src="" alt="" width="64" height="64">
+                    <div class="picked__body">
+                      <p class="picked__name" id="pp-producto-nombre"></p>
+                      <p class="picked__meta" id="pp-producto-meta"></p>
+                    </div>
+                    <button class="link-btn" id="pp-producto-cambiar" type="button">Cambiar producto</button>
+                  </div>
+                  <p class="form-hint" id="ayuda-producto">Elige uno de la lista para que sepamos cuál quieres cambiar.</p>
+                  <p class="form-error" id="err-producto" hidden></p>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="pp-categoria">Tipo de producto<span class="form-label__req" aria-hidden="true">*</span></label>
+                  <div class="field">
+                    <select class="field__select" id="pp-categoria" name="categoria" required aria-describedby="err-categoria">
+                      <option value="">Elige una categoría</option>
+                    </select>
+                  </div>
+                  <p class="form-error" id="err-categoria" hidden></p>
+                </div>
+              </section>
+
+              <section class="form-card" aria-labelledby="tit-medida">
+                <h2 class="form-card__title" id="tit-medida"><span class="form-card__num" aria-hidden="true">2</span>Cómo lo quieres</h2>
+
+                <fieldset class="form-group" id="grupo-colores">
+                  <legend class="form-label">Color o colores<span class="form-label__req" aria-hidden="true">*</span> <span class="form-label__opt">Puedes elegir varios</span></legend>
+                  <div class="color-picker" id="pp-colores"></div>
+                  <label class="toggle toggle--other"><input type="checkbox" id="pp-otro-check"><span>Otro color</span></label>
+                  <div class="form-group" id="grupo-colorOtro" hidden>
+                    <label class="form-label" for="pp-color-otro">¿Qué color te imaginas?</label>
+                    <div class="field"><input class="field__input" id="pp-color-otro" type="text" maxlength="80" placeholder="Por ejemplo: azul cielo con detalles dorados" autocomplete="off" aria-describedby="err-colorOtro"></div>
+                    <p class="form-error" id="err-colorOtro" hidden></p>
+                  </div>
+                  <p class="form-hint" id="pp-colores-elegidos" aria-live="polite">Aún no eliges colores.</p>
+                  <p class="form-error" id="err-colores" hidden></p>
+                </fieldset>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="pp-material">Material <span class="form-label__opt">Opcional</span></label>
+                    <div class="field">
+                      <select class="field__select" id="pp-material" name="material">
+                        <option value="No estoy seguro">No estoy seguro</option>
+                        <option value="PLA">PLA</option>
+                        <option value="PETG">PETG</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="pp-tamano">Tamaño aproximado<span class="form-label__req" aria-hidden="true">*</span></label>
+                    <div class="field"><input class="field__input" id="pp-tamano" name="tamano" type="text" maxlength="60" placeholder="Ejemplo: 5 cm × 5 cm" autocomplete="off" required aria-describedby="err-tamano"></div>
+                    <p class="form-error" id="err-tamano" hidden></p>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="pp-cantidad">Cantidad<span class="form-label__req" aria-hidden="true">*</span></label>
+                  <div class="qty">
+                    <button class="qty__btn" type="button" data-step="-1" aria-label="Disminuir cantidad">−</button>
+                    <input class="qty__input" id="pp-cantidad" name="cantidad" type="number" inputmode="numeric" min="1" max="99" value="1" aria-describedby="err-cantidad">
+                    <button class="qty__btn" type="button" data-step="1" aria-label="Aumentar cantidad">+</button>
+                  </div>
+                  <p class="form-error" id="err-cantidad" hidden></p>
+                </div>
+              </section>
+
+              <section class="form-card" aria-labelledby="tit-detalles">
+                <h2 class="form-card__title" id="tit-detalles"><span class="form-card__num" aria-hidden="true">3</span>Cuéntanos más</h2>
+
+                <div class="form-group">
+                  <label class="form-label" for="pp-descripcion">Describe tu diseño<span class="form-label__req" aria-hidden="true">*</span></label>
+                  <textarea class="field__textarea" id="pp-descripcion" name="descripcion" rows="5" maxlength="1000" placeholder="Cuéntanos qué te imaginas: personaje, texto, estilo..." required aria-describedby="pp-descripcion-cuenta err-descripcion"></textarea>
+                  <p class="form-hint form-hint--count" id="pp-descripcion-cuenta">0 / 1000</p>
+                  <p class="form-error" id="err-descripcion" hidden></p>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="pp-texto">Texto o nombre a incluir <span class="form-label__opt">Opcional</span></label>
+                  <div class="field"><input class="field__input" id="pp-texto" name="texto" type="text" maxlength="60" placeholder="Ejemplo: «Sofi»" autocomplete="off"></div>
+                </div>
+
+                <div class="form-group">
+                  <span class="form-label" id="lbl-modelo">Archivo 3D <span class="form-label__opt">Opcional</span></span>
+                  <p class="form-reminder" id="aviso-modelo"><strong>Ojo:</strong> si no tienes el modelo 3D, nosotros lo realizamos y tiene un costo extra.</p>
+                  <div class="drop" id="drop-modelo">
+                    <input class="drop__input" id="pp-modelo" type="file" accept=".stl,.obj" aria-labelledby="lbl-modelo" aria-describedby="aviso-modelo ayuda-modelo">
+                    <label class="drop__area" for="pp-modelo">
+                      <img src="assets/img/icons/upload.svg" alt="" width="32" height="32">
+                      <strong>Arrastra tu archivo aquí o toca para elegirlo</strong>
+                      <span id="ayuda-modelo">.STL u .OBJ, máximo 50 MB</span>
+                    </label>
+                    <ul class="drop__files" id="lista-modelo"></ul>
+                  </div>
+                  <p class="form-error" id="err-modelo" hidden></p>
+                </div>
+
+                <div class="form-group">
+                  <span class="form-label" id="lbl-refs">Imágenes de referencia <span class="form-label__opt">Opcional</span></span>
+                  <div class="drop" id="drop-refs">
+                    <input class="drop__input" id="pp-refs" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" multiple aria-labelledby="lbl-refs" aria-describedby="ayuda-refs">
+                    <label class="drop__area" for="pp-refs">
+                      <img src="assets/img/icons/upload.svg" alt="" width="32" height="32">
+                      <strong>Arrastra tus imágenes aquí o toca para elegirlas</strong>
+                      <span id="ayuda-refs">JPG o PNG, hasta 5 imágenes de máximo 5 MB cada una</span>
+                    </label>
+                    <ul class="drop__files drop__files--images" id="lista-refs"></ul>
+                  </div>
+                  <p class="form-error" id="err-refs" hidden></p>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="pp-fecha">Fecha en que lo necesitas <span class="form-label__opt">Opcional</span></label>
+                  <div class="field field--date"><input class="field__input" id="pp-fecha" name="fecha" type="date" aria-describedby="ayuda-fecha"></div>
+                  <p class="form-hint" id="ayuda-fecha">Es solo una referencia: en la cotización te confirmamos si llegamos a tiempo.</p>
+                </div>
+              </section>
+
+              <div class="form-gate" id="pedido-sesion" role="alert" tabindex="-1" hidden>
+                <h2 class="form-gate__title">Inicia sesión para enviar tu solicitud</h2>
+                <p>Guardamos lo que escribiste, pero los archivos tendrás que volver a subirlos.</p>
+                <div class="form-gate__actions">
+                  <a class="btn btn--violet" href="login.html?siguiente=pedidos-personalizados.html">Iniciar sesión</a>
+                  <a class="btn btn--honey" href="registro.html?siguiente=pedidos-personalizados.html">Crear cuenta</a>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button class="btn btn--honey btn--lg" id="pedido-enviar" type="submit">
+                  <img class="btn__icon" src="assets/img/icons/sparkle.svg" alt="" width="24" height="24">
+                  Enviar solicitud
+                </button>
+                <button class="btn btn--white btn--lg" id="pedido-cancelar" type="button">Cancelar</button>
+              </div>
+            </form>
+          </div>
+
+          <aside class="pedido__aside" aria-labelledby="como-funciona">
+            <div class="how">
+              <h2 class="how__title" id="como-funciona">¿Cómo funciona?</h2>
+              <ol class="how__list">
+                <li>Llena el formulario</li>
+                <li>Revisamos tu solicitud y te enviamos una cotización por WhatsApp</li>
+                <li>Aceptas, pagas por transferencia y comenzamos a imprimir</li>
+              </ol>
+            </div>
+          </aside>
+        </div>
+
+        <div class="state" id="pedido-exito" hidden>
+          <img class="state__bee" src="assets/img/brand/bee.webp" alt="" width="700" height="598" loading="lazy">
+          <h2 class="state__title" id="pedido-exito-titulo" tabindex="-1">¡Solicitud enviada!</h2>
+          <p class="state__text">Revisaremos tu idea y te contactaremos por WhatsApp con tu cotización. También la verás en Mis compras.</p>
+          <p class="state__status">Estatus: <span class="chip chip--honey">En revisión</span></p>
+          <div class="state__actions">
+            <a class="btn btn--honey" href="mis-compras.html">Ver mis compras</a>
+            <button class="btn btn--white" id="pedido-otra" type="button">Hacer otra solicitud</button>
+          </div>
+        </div>
+
+        <div class="state" id="pedido-error" role="alert" hidden>
+          <img class="state__bee" src="assets/img/brand/bee.webp" alt="" width="700" height="598" loading="lazy">
+          <h2 class="state__title">¡Ay, se nos cayó el panal!</h2>
+          <p class="state__text">No pudimos cargar el formulario. Intenta de nuevo en unos minutos.</p>
+          <button class="btn btn--violet" id="error-reintentar" type="button">Reintentar</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div class="site-footer__badge">
+          <img src="assets/img/brand/bee.webp" alt="Makka Studio" width="700" height="598" loading="lazy">
+        </div>
+
+        <div>
+          <h2 class="site-footer__title">Contáctanos</h2>
+          <ul class="contact-list">
+            <li>
+              <a class="contact-list__link" href="tel:+524444482898">
+                <span class="contact-list__icon"><img src="assets/img/icons/phone.svg" alt="" width="24" height="24"></span>
+                <span>
+                  <span class="contact-list__label">Teléfono</span>
+                  <span class="contact-list__value">52 444 448 2898</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contact-list__link" href="mailto:makka.studio3d@gmail.com">
+                <span class="contact-list__icon"><img src="assets/img/icons/mail.svg" alt="" width="24" height="24"></span>
+                <span>
+                  <span class="contact-list__label">Correo</span>
+                  <span class="contact-list__value">makka.studio3d@gmail.com</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contact-list__link" href="https://www.instagram.com/makka.studio3d/" target="_blank" rel="noopener noreferrer">
+                <span class="contact-list__icon"><img src="assets/img/icons/instagram.svg" alt="" width="24" height="24"></span>
+                <span>
+                  <span class="contact-list__label">Instagram</span>
+                  <span class="contact-list__value">@makka.studio3d</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="site-footer__farewell">
+          <p class="site-footer__quote">Y recuerda que nada es tan imposible de crear.</p>
+          <p class="site-footer__thanks">Gracias por confiar en nosotros.</p>
+          <p class="site-footer__sign">- Makka Studio</p>
+        </div>
+      </div>
+
+      <div class="site-footer__legal">
+        <p>© 2026 Makka Studio. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/components/nav.js" defer></script>
+  <script src="assets/js/components/product-card.js" defer></script>
+  <script src="assets/js/services/session.js" defer></script>
+  <script src="assets/js/components/avatar.js" defer></script>
+  <script src="assets/js/components/user-menu.js" defer></script>
+  <script src="assets/js/components/role-guard.js" defer></script>
+  <script src="assets/js/services/cart.js" defer></script>
+  <script src="assets/js/services/solicitudes.js" defer></script>
+  <script src="assets/js/data/filamentos.js" defer></script>
+  <script src="assets/js/data/productos.js" defer></script>
+  <script src="assets/js/services/api.js" defer></script>
+  <script src="assets/js/pages/pedidos.js" defer></script>
+</body>
+</html>
